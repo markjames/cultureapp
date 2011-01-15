@@ -17,3 +17,5 @@ server "nyarlathotep.dyndns.org", :app, :web, :primary => true
 set :application, "cultureapp"
 set :repository, "https://github.com/markjames/#{application}.git"
 set :scm, :git
+
+set :user, "root"
