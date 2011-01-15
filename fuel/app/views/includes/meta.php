@@ -54,5 +54,3 @@
 
 <!-- Modernizr -->
 <script src="assets/scripts/modernizr-1.6.min.js"></script>
-<!-- jQuery 1.4.4 -->
-<script src="assets/scripts/jquery-1.4.4.min.js"></script>
