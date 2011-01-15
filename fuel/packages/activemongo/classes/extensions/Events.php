@@ -38,6 +38,10 @@ class Events extends ActiveMongo {
 		parent::connect($config->get('dbname'), $config->get('dbhost'));
 	}
 	
+	public function find_by_venue_id( $venue_id ) {
+		return $this->findAll(array('venue_id' => $venue_id));
+	}
+	
 }
 
 ?>
