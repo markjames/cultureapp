@@ -33,7 +33,7 @@ class Controller_Search extends Controller_Template {
 		$events = new Events();
 		$event_items = array();
 		foreach($venue_items as $venue_item) {
-			$event_items[] = $events->find_by_venue_id($venue_item['source_id']);
+			$event_items[] = $events->find_by_venue_id($venue_item->source_id);
 		}
 		
 		$data['postcode'] = $postcode_items;

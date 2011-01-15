@@ -39,7 +39,7 @@ class Events extends ActiveMongo {
 	}
 	
 	public function find_by_venue_id( $venue_id ) {
-		return $this->findAll(array('venue_id' => $venue_id));
+		return $this->findAllObj(array('venue_id' => $venue_id));
 	}
 	
 }
