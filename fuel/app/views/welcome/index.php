@@ -16,20 +16,21 @@
 		
 		<div id="page-content" class="alt">
 
-			<?php include dirname(__file__) . "/../includes/navigation.php"; ?>
+			<?php include dirname(__file__) . "/../includes/tools.php"; ?>
 
-			<div id="primary-content" role="main">
+			<div id="primary-content" class="calculating" role="main">
 
-				<div id="unit-sample-content" title="Sample Content" class="unit" role="region">
+				<div id="calculating" class="tk-bravia">Calculating&hellip;</div>
 
-					<h2>Sample Content</h2>
+				<div id="unit-scores" class="unit" role="region">
 
-					<!-- p, span, strong -->
-					<p>Lorem <span>ipsum dolor nato</span> sit amet <strong>strong text</strong>, <em>emphasis consectetur adipisicing elit</em>, <a href="http://www.example.com">link</a>, <cite>Citation</cite>, <code>Inline Code</code> , <abbr title="Cascading Style Sheets">CSS</abbr> sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-					
-					<p>Lorem <span>ipsum dolor nato</span> sit amet <strong>strong text</strong>, <em>emphasis consectetur adipisicing elit</em>, <a href="http://www.example.com">link</a>, <cite>Citation</cite>, <code>Inline Code</code> , <abbr title="Cascading Style Sheets">CSS</abbr> sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt id est laborum.</p>
-					
-					<a href="#" class="more">more</a>
+					<h2 id="score">80</h2>
+
+					<ol>
+						<li class="genre category comedy"><strong>Comedy</strong> <span>80</span></li>
+						<li class="genre category dance"><strong>Dance</strong> <span>70</span></li>
+						<li class="genre category theatre"><strong>Theatre</strong> <span>70</span></li>
+					</ol>
 
 				</div><!-- /#unit-sample-content -->
 

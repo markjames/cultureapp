@@ -37,6 +37,20 @@ http://cultureapp.site/assets/css/site/style.css
 .category.sport {			background-color: #3baf3f; }
 /* @end */
 
+/* @group Animations */
+
+@-webkit-keyframes button-pulse {
+ 0% {
+   background-color: #000;
+ }
+ 100% {
+   background-color: #666;
+ }
+}
+
+/* @end */
+
+
 /* @override http://poirot.site/assets/style/theme.css */
 
 /* @group Units */
@@ -131,9 +145,15 @@ a.more {
 	clip: rect(1px, 1px, 1px, 1px);
 }
 #header {
-	background-color: #3dd0dc;
 	margin: 0px auto;
 	padding-bottom: 13px;
+	
+	background: #3dd0dc; /* old browsers */
+background: -moz-linear-gradient(top, #3dd0dc 0%, #36bbc6 100%); /* firefox */
+
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3dd0dc), color-stop(100%,#36bbc6)); /* webkit */
+
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3dd0dc', endColorstr='#36bbc6',GradientType=0 ); /* ie */
 }
 #header-inner {
 	width: 950px;
@@ -152,6 +172,7 @@ a.more {
 	font-weight: normal;
 	font-size: 4em;
 	-webkit-font-smoothing: antialiased;
+	text-shadow: rgba(0,0,0,0.14) 0 3px 0;
 }
 #header #unit-user-info {
 	width: 230px;
@@ -203,58 +224,102 @@ a.more {
 *:first-child+html #header { zoom: 1; } /* Clearfix - IE7 */
 /* @end */
 
-#unit-primary-navigation {
-	clear: left;
-}
-#unit-primary-navigation ul {
+#group-tools {
 	display: block;
 	list-style: none;
 	margin: 0;
 	padding: 0;
-	background: #33b0bb;
-}
-#unit-primary-navigation ul li {
-	display: inline;
-	list-style: none;
-	float: left;
-}
-#unit-primary-navigation ul li a {
-	color: #FFF;
-	text-decoration: none;
-	-webkit-font-smoothing: antialiased;
-	font-weight: bold;
-	padding: 0.25em 1em;
-	display: block;
-}
-#unit-primary-navigation ul li a:hover {
-	background: #288a92;
-}
-/* @group Clearfix */
-#unit-primary-navigation ul:after {
-	visibility: hidden;
-	display: block;
-	font-size: 0;
-	content: " ";
-	clear: both;
-	height: 0;
-} /* Clearfix */
-* html #unit-primary-navigation ul { zoom: 1; display: block; } /* Clearfix - IE6 */
-*:first-child+html #unit-primary-navigation ul { zoom: 1; } /* Clearfix - IE7 */
-/* @end */
+	background: ;
+	height: 78px;
+	border: 8px solid #18545a;
+	border-radius: 8px;
+	position: relative;
+	left: -8px;
+	top: -8px;
+	
+	background: #FFFFFF; /* old browsers */
+background: -moz-linear-gradient(top, #FFFFFF 0%, #CCC 100%); /* firefox */
 
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFFFFF), color-stop(100%,#CCC)); /* webkit */
+
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', endColorstr='#CCC',GradientType=0 );
+}
+#group-tools #unit-postcode-search {
+	background: #2e9da6;
+	width: 310px;
+	height: 48px;
+	padding: 10px 20px 20px 16px;
+	vertical-align: top;
+}
+#group-tools #unit-postcode-search label {
+	display: none;
+}
+#group-tools #unit-postcode-search .field {
+	width: 255px;
+	display: inline-block;
+}
+#group-tools #unit-postcode-search input {
+	width: 100%;
+	font-size: 28px;
+	border: 4px solid #FFF;
+	margin-bottom: 10px;
+	padding-left: 5px;
+	margin-top: 5px;
+	font-family: "brevia-1","brevia-2",sans-serif;
+	font-weight: bold;
+	color: #666;
+}
+#group-tools #unit-postcode-search button {
+	width: 52px;
+	font-size: 21px;
+	margin: 4px 0;
+	position: relative;
+	top: 1px;
+	height: 48px;
+	border: none;
+	background-color: #000;
+	color: #FFF;
+	font-family: "brevia-1","brevia-2",sans-serif;
+	font-weight: bold;
+	-webkit-animation-name: button-pulse;
+	-webkit-animation-duration: 2s;
+	-webkit-animation-iteration-count: 10000;
+	-webkit-animation-direction: alternate;
+	-webkit-animation-timing-function: ease-in-out;
+}
+#group-tools #unit-postcode-search button:hover {
+	
+}
+@-webkit-keyframes spin {
+      from { -webkit-transform: rotateY(0); }
+      to   { -webkit-transform: rotateY(360deg); }
+    }
+
+#page-content {
+      -webkit-perspective: 900;
+}
 #primary-content {
-	width: 340px;
+	margin-top: 0.5em;
+	width: 310px;
 	float: left;
+	-webkit-transform-style: preserve-3d;
+	-webkit-transition: -webkit-transform 1s linear;
+	background: #333;
+	position: relative;
+}
+#primary-content:hover {
+	-webkit-transform: rotateY(180deg);
 }
 #secondary-content {
 	width: 560px;
 	float: left;
-	margin-left: 10px;
+	margin-left: 20px;
 	padding: 20px;
 	background: #FFF;
 	height: 450px;
-	margin-top: 20px;
+	margin-top: 0.5em;
 }
+
 #canvas {
 	background-color: #F0F0F0;
 	height: 450px;
@@ -269,4 +334,31 @@ a.more {
 	color: #666;
 	-webkit-font-smoothing: antialiased;
 }
+#calculating {
+	font-family: "brevia-1","brevia-2",sans-serif;
+	font-weight: bold;
+	font-size: 2em;
+	color: #F9F9F9;
+	text-align: center;
+	height: 100px;
+	line-height: 100px;
+	-webkit-backface-visibility: hidden;
+	-webkit-transform-style: preserve-3d;
+	-webkit-transform: rotateY(180deg);
+	position: absolute;
+	top: 10px;
+	right: 70px;
+	width: 20px;
+}
+.calculating #calculating {
+	display: block;
+}
 
+#unit-scores {
+	-webkit-backface-visibility: hidden;
+	-webkit-transform-style: preserve-3d;
+}
+
+#unit-scores {
+	
+}

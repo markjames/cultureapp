@@ -15,7 +15,7 @@
 		
 		<div id="page-content" class="alt">
 
-			<?php include dirname(__file__) . '/../includes/navigation.php' ?>
+			<?php include dirname(__file__) . '/../includes/tools.php' ?>
 
 			<div id="primary-content" role="main">
 
@@ -27,7 +27,7 @@
 						</div>
 						<input type="submit" name="command" value="Search" class="button" />
 					</form>
-					
+
 					<?php if(isset($results['postcode'])): ?>
 						<h2>Your Location Data</h2>
 						<ul>
