@@ -17,3 +17,9 @@
 <script src="assets/scripts/dd_belatedpng.js?"></script>
 <script>DD_belatedPNG.fix('');</script>
 <![endif]-->
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+	});
+</script>

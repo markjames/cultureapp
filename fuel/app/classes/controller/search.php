@@ -5,9 +5,14 @@ class Controller_Search extends Controller_Template {
 	public $template = 'search/index';
 	
 	public function action_index() {
+		$results = array();
 		if(isset($_POST['command'])) {
-			$this->template->results = $this->_search_on_postcode($_POST['postcode']);
+			$results = $this->_search_on_postcode($_POST['postcode']);
+			$results = $this->_sort_events_into_genre($results);
+			$this->template->results = $results;
 		}
+		
+		return $results;
 		
 		// $this->render('search/index');
 		$this->template->content = View::factory('search/index');
@@ -41,6 +46,31 @@ class Controller_Search extends Controller_Template {
 		$data['events'] = $event_items;
 		
 		return $data;
+	}
+	
+	private function _sort_events_into_genre($data) {
+		$genres = array('exhibit' => 0,'dance' => 0,'opera' => 0,'classical' => 0,'music' => 0,'folk-and-world' => 0,'jazz-and-blues' => 0,'rock-and-pop' => 0,'theatre' => 0,'film' => 0,'comedy' => 0,'special-events' => 0);
+		
+		// Create a mapping array
+		$mappings = array('MUSEUM' => 'exhibit','DANCE' => 'dance','OPERA' => 'opera','CLASSICAL' => 'classical','MUSIC' => 'music','MUSIC:FOLKCELTIC' => 'folk-and-world','MUSIC:JAZZ' => 'jazz-and-blues','MUSIC:ROCK' => 'rock-and-pop','THEATRE' => 'theatre','FILM' => 'film','COMEDY' => 'comedy','SPECIALEVENTS' => 'special-events');
+		
+		// Events are in a multidimensional array.
+		foreach($data['events'] as $events) {
+			foreach($events as $event) {
+				foreach($event->categories as $genre) {
+					if(array_key_exists($genre, $mappings)) {
+						$genres[$mappings[$genre]]++;
+					}
+				}
+			}
+		}
+		
+		return $genres;
+		
+	}
+	
+	private function _convert_search_to_json( $data ) {
+		return json_encode($data);
 	}
 	
 }
