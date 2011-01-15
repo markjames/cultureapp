@@ -358,7 +358,21 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', end
 	-webkit-backface-visibility: hidden;
 	-webkit-transform-style: preserve-3d;
 }
-
+#unit-scores #score {
+	font-size: 60px;
+}
 #unit-scores {
-	
+	padding: 1em;
+}
+#unit-scores ol {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+#unit-scores li {
+	list-style: none;
+	margin: 0;
+	padding: 10px 20px;
+	margin-bottom: 4px;
+	font-size: 2em;
 }
