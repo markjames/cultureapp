@@ -61,29 +61,29 @@ class GDPDataImporter extends DataImporter {
 				
 				// Figure out which file is which
 				if( FALSE !== stripos($filename, '_TITLES_' ) ) {
-					$titleFiles []= $filename;
+					$titleFiles []= $iterator->getPathname();
 				}
 				if( FALSE !== stripos($filename, '_VENUE_' ) ) {
-					$venueFiles []= $filename;
+					$venueFiles []= $iterator->getPathname();
 				}
 				if( FALSE !== stripos($filename, '_EVENT_' ) ) {
-					$eventFiles []= $filename;
+					$eventFiles []= $iterator->getPathname();
 				}
 			}
 		}
 
 		foreach( $titleFiles as $titleFile ) {
-			if( !$this->_parseTitleFile( realpath($directory . $titleFile) ) ) {
+			if( !$this->_parseTitleFile( $titleFile ) ) {
 				return false;
 			}
 		}
 		foreach( $venueFiles as $venueFile ) {
-			if( !$this->_parseVenueFile( realpath($directory . $venueFile) ) ) {
+			if( !$this->_parseVenueFile( $venueFile ) ) {
 				return false;
 			}
 		}
 		foreach( $eventFiles as $eventFile ) {
-			if( !$this->_parseEventFile( realpath($directory . $eventFile) ) ) {
+			if( !$this->_parseEventFile( $eventFile ) ) {
 				return false;
 			}
 		}
