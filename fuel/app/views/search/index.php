@@ -1,34 +1,66 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>Culture Hack Day - Search</title>
-	<style type="text/css">
-		body { background-color: #F2F2F2; margin: 45px 0 0 0; font-family: ‘Palatino Linotype’, ‘Book Antiqua’, Palatino, serif; font-size: 18px }
-		#wrapper { width: 740px; margin: 0 auto; }
-		h1 { color: #333333; font: normal normal normal 62px/1em Impact, Charcoal, sans-serif; margin: 0 0 15px 0; }
-		pre { padding: 15px; background-color: #FFF; border: 1px solid #CCC; font-size: 16px;}
-		#footer p { font-size: 14px; text-align: right; }
-		a { color: #000; }
-	</style>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:og="http://ogp.me/ns#" xmlns:egms="http://www.esd.org.uk/standards/egms/3.0/egms-schema#" xmlns:ipsv="http://www.esd.org.uk/standards/ipsv/2.00/ipsv-schema#" xmlns:dv="http://rdf.data-vocabulary.org/#" typeof="v:Event">
+	<?php include dirname(__file__) . "/../includes/meta.php"; ?>
 </head>
-<body>
-	<div id="wrapper">
-		<h1>Culture App</h1>
+<body class="page-index template-index section-none environment-dev">
+
+	<div id="container">
+
+		<header id="header">
+			<div id="header-inner">
+
+				<div id="unit-logo" title="Logo" class="unit" role="region">
+					<h1>CultureScore</h1>
+				</div><!-- /#unit-logo -->
+
+			</div><!-- /#header-inner -->
+		</header><!-- /#header -->
 		
-		<div id="content">
-			<form method="post" name="culture-search">
-				<div class="field field-first field-100">
-					<label for="postcode">Postcode: </label><input type="text" name="postcode" id="postcode" class="text" />
-				</div>
-				<input type="submit" name="command" value="Search" class="button" />
-			</form>
-		</div>
-		<div id="footer">
-			<p>
-				Executed in {exec_time}s using {mem_usage}mb of memory.
-			</p>
-		</div>
-	</div>
+		<div id="page-content" class="alt">
+
+			<?php include dirname(__file__) . '/../includes/navigation.php' ?>
+
+			<div id="primary-content" role="main">
+
+				<div id="unit-postcode-search" title="Postcode Search" class="unit" role="region">
+
+					<form method="post" name="culture-search">
+						<div class="field field-first field-100">
+							<label for="postcode">Postcode: </label><input type="text" name="postcode" id="postcode" class="text" />
+						</div>
+						<input type="submit" name="command" value="Search" class="button" />
+					</form>
+					
+					<?php if(isset($results)): ?>
+						<h2>Your Location Data</h2>
+						<ul>
+							<li>Postcode: <?php echo $results->postcode; ?></li>
+							<li>Lat: <?php echo $results->loc['lat']; ?></li>
+							<li>Long: <?php echo $results->loc['long']; ?></li>
+						</ul>
+					<?php endif; ?>
+
+				</div><!-- /#unit-sample-content -->
+
+			</div><!-- /#primary-content -->
+
+			<div id="secondary-content" role="complementary">
+				<div id="canvas"></div>
+			</div><!-- /#secondary-content -->
+		</div><!-- /#page-content -->
+
+		<footer id="footer" role="contentinfo">
+			<p><a href="http://twitter.com/markjames">@markjames</a> &amp; <a href="http://twitter.com/andrewlowther">@andrewlowther</a> at Culture Hack Day 2011 (<a href="http://twitter.com/culturehackday">@culturehackday</a>) &mdash; Code: <a href="https://github.com/markjames/cultureapp">githubcom/markjames/cultureapp</a></p>
+		</footer><!-- /#footer -->
+
+	</div><!-- /#container -->
+
+	<?php include dirname(__file__) . '/../includes/footer.php'; ?>
+
 </body>
 </html>

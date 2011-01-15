@@ -1,16 +1,29 @@
 <?php
 
-class Controller_Search extends Controller {
+class Controller_Search extends Controller_Template {
+	
+	public $template = 'search/index';
+	
+	private function _search_on_postcode( $postcode ) {
+		// Sanitize the postcode
+		$postcode = htmlentities($postcode, ENT_QUOTES, "UTF-8");
+		// Remove spaces, as that's how we're saving them
+		$postcode = str_replace(" ", "", $postcode);
+		// Make it uppercase
+		$postcode = strtoupper($postcode);
+		
+		$postcode_search = new Postcodes();
+		
+		return $postcode_search->findOne(array('postcode' => $postcode));
+	}
 	
 	public function action_index() {
 		if(isset($_POST['command'])) {
-			$postcode = $_POST['postcode'];
+			$this->template->results = $this->_search_on_postcode($_POST['postcode']);
 		}
 		
-		$mongo = new Venues('test', 'localhost');
-		var_dump($mongo->find());
-		
-		$this->render('search/index');
+		// $this->render('search/index');
+		$this->template->content = View::factory('search/index');
 	}
 	
 }
