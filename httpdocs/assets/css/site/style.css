@@ -1,0 +1,272 @@
+/* @description
+
+Main CSS file
+
+Color References
+Text: 
+Links: 
+
+*/
+
+/* @override 
+http://cultureapp.site/assets/css/site/style.css
+*/
+
+.derp { color: #FF0043; }
+
+/* @group Genre colours */
+.category.dance {			background-color: #d11418; }
+.category.comedy {			background-color: #eab300; }
+.category.film {			background-color: #57837d; }
+.category.family {			background-color: #d52dd5; }
+.category.classical {		background-color: #e05d00; }
+.category.music {			background-color: #244bd4; }
+.category.theatre {		background-color: #9700F0; }
+.category.spoken-word {	background-color: #e29107; }
+.category.club {			background-color: #5a79af; }
+.category.exhibit {		background-color: #af2e7d; }
+.category.digital {		background-color: #333; }
+.category.visual-arts {	background-color: #b7b400; }
+.category.workshop {		background-color: #585858; }
+.category.folk-and-world {	background-color: #1689af; }
+.category.jazz-and-blues {	background-color: #316eaf; }
+.category.rock-and-pop {	background-color: #0057c6; }
+.category.opera {			background-color: #de007d; }
+.category.conference {		background-color: #84af5a; }
+.category.special-event {	background-color: #004902; }
+.category.sport {			background-color: #3baf3f; }
+/* @end */
+
+/* @override http://poirot.site/assets/style/theme.css */
+
+/* @group Units */
+.unit:after, .group:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.unit, .group { display: inline-block; }
+* html .unit, * html .group { height: 1%; }
+.unit, .group { display: block; }
+/* @end */
+
+body {
+	color: #444;
+	background: #000;
+}
+
+a:link {
+	color: #3dd0dc;
+	font-weight: bold;
+	cursor: pointer;
+	text-decoration: none;
+}
+a:visited {
+	color: #34b2bc;
+}
+a:hover {
+	color: #c6faff;
+}
+a:active {
+	color: #00cbdc;
+}
+a.more {
+	background: url(../images/picto16/1_35.png) no-repeat 0 1px;
+	padding: 1px 0 1px 22px;
+	color: #000;
+}
+
+/* @group Colour swaps */
+
+.alt {
+	color: #d4d1d6;
+}
+.alt strong, .alt b, .alt th {
+	font-weight: bold;
+	color: #FFF;
+}
+.alt h1,.alt h2,.alt h3,.alt h4,.alt h5,.alt h6,.alt h1 strong,.alt h2 strong,.alt h3 strong,.alt h4 strong,.alt h5 strong,.alt h6 strong {
+	color: #FFF;
+}
+
+.alt a {
+	-webkit-font-smoothing: antialiased;
+}
+
+/* @end */
+
+#container {
+}
+/* @group Clearfix */
+#container:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+} /* Clearfix */
+* html #container { zoom: 1; display: block; } /* Clearfix - IE6 */
+*:first-child+html #container { zoom: 1; } /* Clearfix - IE7 */
+/* @end */
+
+#page-content {
+	width: 950px;
+	margin: 0px auto;
+	padding: 0 10px;
+	margin-top: -15px;
+}
+/* @group Clearfix */
+#page-content:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+} /* Clearfix */
+* html #page-content { zoom: 1; display: block; } /* Clearfix - IE6 */
+*:first-child+html #page-content { zoom: 1; } /* Clearfix - IE7 */
+/* @end */
+
+#skip-links {
+	position: absolute !important;
+	clip: rect(1px 1px 1px 1px);
+	clip: rect(1px, 1px, 1px, 1px);
+}
+#header {
+	background-color: #3dd0dc;
+	margin: 0px auto;
+	padding-bottom: 13px;
+}
+#header-inner {
+	width: 950px;
+	margin: 0px auto;
+}
+#header #unit-logo {
+	color: #FFF;
+	width: 430px;
+	margin-right: 10px;
+	padding: 20px 0 20px 0;
+	float: left;
+}
+#header #unit-logo h1 {
+	color: #FFF;
+	margin: 0;
+	font-weight: normal;
+	font-size: 4em;
+	-webkit-font-smoothing: antialiased;
+}
+#header #unit-user-info {
+	width: 230px;
+	float: left;
+	margin-right: 10px;
+	margin-top: 23px;
+	-webkit-font-smoothing: antialiased;
+}
+#header #unit-user-info p {
+	padding: 0px;
+	margin: 0;
+	line-height: 28px;
+	color: #444;
+}
+#header #unit-user-info p a {
+	color: #FFF;
+}
+#header #unit-user-info img {
+	margin-right: 8px;
+	border: 2px solid #FFF;
+}
+#header #unit-site-search {
+	width: 170px;
+	float: right;
+	margin-top: 25px;
+}
+#header #unit-site-search input {
+	width: 170px;
+}
+#header #unit-site-search input.placeholder  {
+	color: #888;
+}
+#header #unit-site-search label {
+	display: none;
+}
+#header #unit-site-search button {
+	display: none;
+}
+/* @group Clearfix */
+#header:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+} /* Clearfix */
+* html #header { zoom: 1; display: block; } /* Clearfix - IE6 */
+*:first-child+html #header { zoom: 1; } /* Clearfix - IE7 */
+/* @end */
+
+#unit-primary-navigation {
+	clear: left;
+}
+#unit-primary-navigation ul {
+	display: block;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	background: #33b0bb;
+}
+#unit-primary-navigation ul li {
+	display: inline;
+	list-style: none;
+	float: left;
+}
+#unit-primary-navigation ul li a {
+	color: #FFF;
+	text-decoration: none;
+	-webkit-font-smoothing: antialiased;
+	font-weight: bold;
+	padding: 0.25em 1em;
+	display: block;
+}
+#unit-primary-navigation ul li a:hover {
+	background: #288a92;
+}
+/* @group Clearfix */
+#unit-primary-navigation ul:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+} /* Clearfix */
+* html #unit-primary-navigation ul { zoom: 1; display: block; } /* Clearfix - IE6 */
+*:first-child+html #unit-primary-navigation ul { zoom: 1; } /* Clearfix - IE7 */
+/* @end */
+
+#primary-content {
+	width: 340px;
+	float: left;
+}
+#secondary-content {
+	width: 560px;
+	float: left;
+	margin-left: 10px;
+	padding: 20px;
+	background: #FFF;
+	height: 450px;
+	margin-top: 20px;
+}
+#canvas {
+	background-color: #F0F0F0;
+	height: 450px;
+}
+#footer {
+	border-top: 1px solid #CCC;
+	margin: 20px auto;
+	padding-top: 10px;
+	width: 950px;
+	font-size: 11px;
+	font-weight: bold;
+	color: #666;
+	-webkit-font-smoothing: antialiased;
+}
+
