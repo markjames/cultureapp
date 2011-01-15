@@ -6,8 +6,9 @@ class Venues extends ActiveMongo {
 	public $loc;
 	public $source;
 	
-	public function __construct( $db, $host, $username = NULL, $password = NULL ) {
-		parent::connect($db, $host, $username, $password);
+	public function __construct() {
+		$config = new ConfigObject();
+		parent::connect($config->get('dbname'), $config->get('dbhost'));
 	}
 	
 }
