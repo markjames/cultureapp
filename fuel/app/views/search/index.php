@@ -28,12 +28,19 @@
 						<input type="submit" name="command" value="Search" class="button" />
 					</form>
 					
-					<?php if(isset($results)): ?>
+					<?php if(isset($results['postcode'])): ?>
 						<h2>Your Location Data</h2>
 						<ul>
-							<li>Postcode: <?php echo $results->postcode; ?></li>
-							<li>Lat: <?php echo $results->loc['lat']; ?></li>
-							<li>Long: <?php echo $results->loc['long']; ?></li>
+							<?php $postcode = $results['postcode'] ?>
+							<?php if(isset($postcode->postcode)): ?>
+								<li>Postcode: <?php echo $postcode->postcode; ?></li>
+							<?php endif; ?>
+							<?php if(isset($postcode->lat)): ?>
+								<li>Lat: <?php echo $postcode->lat; ?></li>
+							<?php endif; ?>
+							<?php if(isset($postcode->lng)): ?>
+								<li>Long: <?php echo $postcode->lng; ?></li>
+							<?php endif; ?>
 						</ul>
 					<?php endif; ?>
 

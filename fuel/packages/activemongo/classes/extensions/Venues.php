@@ -12,6 +12,17 @@ class Venues extends ActiveMongo {
 		parent::connect($config->get('dbname'), $config->get('dbhost'));
 	}
 	
+	public function find_by_lat_lng( $lat, $long, $distance = 5 ) {
+		$collection = $this->findAllAssoc(array('
+			loc' => array(
+				'$near' => array($lat, $long),
+				'$maxDistance' => $distance
+			)
+		));
+		
+		return $collection;
+	}
+	
 }
 
 ?>

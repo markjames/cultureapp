@@ -4,6 +4,15 @@ class Controller_Search extends Controller_Template {
 	
 	public $template = 'search/index';
 	
+	public function action_index() {
+		if(isset($_POST['command'])) {
+			$this->template->results = $this->_search_on_postcode($_POST['postcode']);
+		}
+		
+		// $this->render('search/index');
+		$this->template->content = View::factory('search/index');
+	}
+	
 	private function _search_on_postcode( $postcode ) {
 		// Sanitize the postcode
 		$postcode = htmlentities($postcode, ENT_QUOTES, "UTF-8");
@@ -12,18 +21,17 @@ class Controller_Search extends Controller_Template {
 		// Make it uppercase
 		$postcode = strtoupper($postcode);
 		
+		$data = array();
 		$postcode_search = new Postcodes();
+		$venue_search = new Venues();
 		
-		return $postcode_search->findOne(array('postcode' => $postcode));
-	}
-	
-	public function action_index() {
-		if(isset($_POST['command'])) {
-			$this->template->results = $this->_search_on_postcode($_POST['postcode']);
-		}
+		$postcode_items = $postcode_search->findOne(array('postcode' => $postcode));
+		$venue_items = $venue_search->find_by_lat_lng($postcode_items->lat, $postcode_items->lng);
 		
-		// $this->render('search/index');
-		$this->template->content = View::factory('search/index');
+		$data['postcode'] = $postcode_items;
+		$data['venues'] = $venue_items;
+		
+		return $data;
 	}
 	
 }
