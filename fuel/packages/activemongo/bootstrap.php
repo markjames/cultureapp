@@ -11,6 +11,9 @@
  */
 
 include(__DIR__.'/classes/ActiveMongo.php');
+include(__DIR__ . '/classes/extensions/Config.php');
 include(__DIR__.'/classes/extensions/Venues.php');
+include(__DIR__ . '/classes/extensions/Events.php');
+include(__DIR__ . '/classes/extensions/Postcodes.php');
 
 /* End of file bootstrap.php */
