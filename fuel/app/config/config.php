@@ -119,6 +119,7 @@ return array(
 		 * );
 		 */
 		'packages'	=> array(
+			'activemongo'
 			//'activerecord',
 		),
 
