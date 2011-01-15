@@ -11,15 +11,7 @@
 
 	<div id="container">
 
-		<header id="header">
-			<div id="header-inner">
-
-				<div id="unit-logo" title="Logo" class="unit" role="region">
-					<h1>CultureScore</h1>
-				</div><!-- /#unit-logo -->
-
-			</div><!-- /#header-inner -->
-		</header><!-- /#header -->
+		<?php include dirname(__file__) . "/../includes/header.php"; ?>
 		
 		<div id="page-content" class="alt">
 
@@ -36,12 +28,19 @@
 						<input type="submit" name="command" value="Search" class="button" />
 					</form>
 					
-					<?php if(isset($results)): ?>
+					<?php if(isset($results['postcode'])): ?>
 						<h2>Your Location Data</h2>
 						<ul>
-							<li>Postcode: <?php echo $results->postcode; ?></li>
-							<li>Lat: <?php echo $results->loc['lat']; ?></li>
-							<li>Long: <?php echo $results->loc['long']; ?></li>
+							<?php $postcode = $results['postcode'] ?>
+							<?php if(isset($postcode->postcode)): ?>
+								<li>Postcode: <?php echo $postcode->postcode; ?></li>
+							<?php endif; ?>
+							<?php if(isset($postcode->lat)): ?>
+								<li>Lat: <?php echo $postcode->lat; ?></li>
+							<?php endif; ?>
+							<?php if(isset($postcode->lng)): ?>
+								<li>Long: <?php echo $postcode->lng; ?></li>
+							<?php endif; ?>
 						</ul>
 					<?php endif; ?>
 
