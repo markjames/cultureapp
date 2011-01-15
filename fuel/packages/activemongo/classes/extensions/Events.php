@@ -31,7 +31,7 @@ class Events extends ActiveMongo {
 	public $source;
 	
 	public function __construct() {
-		$config = new Config();
+		$config = new ConfigObject();
 		parent::connect($config->get('dbname'), $config->get('dbhost'));
 	}
 	

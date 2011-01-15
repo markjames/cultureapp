@@ -1,6 +1,6 @@
 <?php
 
-class Config {
+class ConfigObject {
 	
 	public $_config = array(
 		'dbname' => 'culturehackday',
