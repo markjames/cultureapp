@@ -30,7 +30,7 @@ class Controller_Search extends Controller {
 		$postcode_items = $postcode_search->findOne(array('postcode' => $postcode));
 		
 		// Third parameter is the max distance from the postcode lat/long in miles.
-		$venue_items = $venue_search->find_by_lat_lng($postcode_items->lat, $postcode_items->lng, 15);
+		$venue_items = $venue_search->find_by_lat_lng($postcode_items->lat, $postcode_items->lng, 4);
 		
 		$events = new Events();
 		$event_items = array();
