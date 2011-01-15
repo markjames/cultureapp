@@ -13,11 +13,9 @@ class Venues extends ActiveMongo {
 	}
 	
 	public function find_by_lat_lng( $lat, $long, $distance = 5 ) {
-		$collection = $this->findAllAssoc(array('
-			loc' => array(
-				'$within' => array('$center' => array($lat, $long)),
-				$distance / 69
-			)
+		$collection = $this->findAllAssoc(array('loc' => array(
+			'$near' => array($lat, $long),
+			'$maxDistance' => $distance)
 		));
 		
 		return $collection;
