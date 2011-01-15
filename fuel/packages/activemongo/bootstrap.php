@@ -15,10 +15,11 @@
 $iterator = new RecursiveIteratorIterator($directory = new RecursiveDirectoryIterator(dirname(__file__) . '/classes'));
 
 while($iterator->valid()) {
-	if(!$iterator->isDot()) {
+	if(!$iterator->isDot() && !$iterator->isDir()) {
 		$sub_path = $iterator->getSubPath() ? $iterator->getSubPath() . DIRECTORY_SEPARATOR : "";
 		$required[] = $iterator->getFilename();
-		require_once dirname(__file__) . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . $sub_path . $iterator->getFilename();
+		require_once( $iterator->getPathname() );
+		//require_once dirname(__file__) . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . $sub_path . $iterator->getFilename();
 	}
 	$iterator->next();
 }
