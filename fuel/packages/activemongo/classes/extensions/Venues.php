@@ -2,6 +2,7 @@
 
 class Venues extends ActiveMongo {
 	
+	public $_id;
 	public $title;
 	public $loc;
 	public $source;

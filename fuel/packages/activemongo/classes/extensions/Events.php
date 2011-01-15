@@ -2,6 +2,8 @@
 
 class Events extends ActiveMongo {
 	
+	public $_id;
+	
 	/**
 	 * Venue relationship
 	 *
@@ -21,6 +23,7 @@ class Events extends ActiveMongo {
 	public $dtstart;
 	public $dtend;
 	public $genre;
+	public $loc;
 	
 	/**
 	 * Source of data
