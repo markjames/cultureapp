@@ -250,6 +250,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', end
 	height: 48px;
 	padding: 10px 20px 20px 16px;
 	vertical-align: top;
+	float: left;
 }
 #group-tools #unit-postcode-search label {
 	display: none;
@@ -257,6 +258,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', end
 #group-tools #unit-postcode-search .field {
 	width: 255px;
 	display: inline-block;
+}
+#group-tools #unit-timeline {
+	float: left;
+	width: 500px;
+	padding: 20px;
+}
+#group-tools #unit-timeline {
+	color: #000;
+	font-weight: bold;
+	-webkit-font-smoothing: antialiased;
 }
 #group-tools #unit-postcode-search input {
 	width: 100%;
@@ -316,13 +327,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', end
 	margin-left: 20px;
 	padding: 20px;
 	background: #FFF;
-	height: 450px;
+
 	margin-top: 0.5em;
 }
 
 #canvas {
 	background-color: #F0F0F0;
-	height: 450px;
+	height: 685px;
 }
 #footer {
 	border-top: 1px solid #CCC;
@@ -360,6 +371,23 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', end
 }
 #unit-scores #score {
 	font-size: 60px;
+	margin: 0 0 10px 0;
+	text-align: center;
+	font-family: "brevia-1","brevia-2",sans-serif;
+	padding: 3px 20px 1px;
+	margin-top: -2px;
+	border-radius: 46px;
+	font-weight: bold;
+	
+	background: #FFFFFF; /* old browsers */
+background: -moz-linear-gradient(top, #FFFFFF 0%, #E3E4E5 74%); /* firefox */
+
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFFFFF), color-stop(74%,#E3E4E5)); /* webkit */
+
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', endColorstr='#E3E4E5',GradientType=0 );
+	text-shadow: #fff 0 1px 1px;
+	color: #616161;
+	
 }
 #unit-scores {
 	padding: 1em;
@@ -372,7 +400,29 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', end
 #unit-scores li {
 	list-style: none;
 	margin: 0;
-	padding: 10px 20px;
+	padding: 10px 15px;
 	margin-bottom: 4px;
-	font-size: 2em;
+	font-size: 1.4em;
+	position: relative;
+}
+#unit-scores li strong {
+	font-weight: normal;
+}
+
+#unit-scores li span {
+	position: absolute;
+	left: 88%;
+	padding: 3px 20px 1px;
+	margin-top: -2px;
+	border-radius: 36px;
+	font-weight: bold;
+	
+	background: #FFFFFF; /* old browsers */
+background: -moz-linear-gradient(top, #FFFFFF 0%, #E3E4E5 74%); /* firefox */
+
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFFFFF), color-stop(74%,#E3E4E5)); /* webkit */
+
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', endColorstr='#E3E4E5',GradientType=0 );
+	text-shadow: #fff 0 1px 1px;
+	color: #616161;
 }
