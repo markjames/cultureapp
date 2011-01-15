@@ -24,12 +24,21 @@
 
 				<div id="unit-scores" class="unit" role="region">
 
-					<h2 id="score">80</h2>
+					<h2 id="score">0</h2>
 
 					<ol>
-						<li class="genre category comedy"><strong>Comedy</strong> <span>80</span></li>
-						<li class="genre category dance"><strong>Dance</strong> <span>70</span></li>
-						<li class="genre category theatre"><strong>Theatre</strong> <span>70</span></li>
+						<li class="genre category exhibit"><strong>Museums/Exhibits</strong> <span>0</span></li>
+						<li class="genre category dance"><strong>Dance</strong> <span>0</span></li>
+						<li class="genre category opera"><strong>Opera</strong> <span>0</span></li>
+						<li class="genre category classical"><strong>Classical</strong> <span>0</span></li>
+						<li class="genre category music"><strong>Music</strong> <span>0</span></li>
+						<li class="genre category folk-and-world"><strong>Folk and world</strong> <span>0</span></li>
+						<li class="genre category jazz-and-blues"><strong>Jazz and blues</strong> <span>0</span></li>
+						<li class="genre category rock-and-pop"><strong>Rock and pop</strong> <span>0</span></li>
+						<li class="genre category theatre"><strong>Theatre</strong> <span>0</span></li>
+						<li class="genre category film"><strong>Film</strong> <span>0</span></li>
+						<li class="genre category comedy"><strong>Comedy</strong> <span>0</span></li>
+						<li class="genre category special-event"><strong>Special Events</strong> <span>0</span></li>
 					</ol>
 
 				</div><!-- /#unit-sample-content -->

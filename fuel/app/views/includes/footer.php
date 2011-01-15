@@ -19,7 +19,21 @@
 <![endif]-->
 
 <script type="text/javascript">
-	$(document).ready(function(){
-		
+	$(function(){
+		$('#search-button').click(function(){
+			$.post('/search', {
+				"command": true,
+				"postcode": $('#postcode').val()
+			},
+			function(response, text, xmlrequest) {
+				for(var i in response) {
+					$('li.' + i).find('span').html(response[i]);
+				}
+				
+				$('#primary-content').removeClass('calculating');
+			}, "json");
+			
+			return false;
+		});
 	});
 </script>

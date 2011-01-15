@@ -1,21 +1,18 @@
 <?php
 
-class Controller_Search extends Controller_Template {
-	
-	public $template = 'search/index';
-	
+class Controller_Search extends Controller {
+		
 	public function action_index() {
 		$results = array();
 		if(isset($_POST['command'])) {
 			$results = $this->_search_on_postcode($_POST['postcode']);
 			$results = $this->_sort_events_into_genre($results);
-			$this->template->results = $results;
+			$results = $this->_convert_search_to_json($results);
 		}
-		
-		return $results;
+		header('Content-Type: application/json');
+		echo $results;
 		
 		// $this->render('search/index');
-		$this->template->content = View::factory('search/index');
 	}
 	
 	private function _search_on_postcode( $postcode ) {
@@ -49,10 +46,10 @@ class Controller_Search extends Controller_Template {
 	}
 	
 	private function _sort_events_into_genre($data) {
-		$genres = array('exhibit' => 0,'dance' => 0,'opera' => 0,'classical' => 0,'music' => 0,'folk-and-world' => 0,'jazz-and-blues' => 0,'rock-and-pop' => 0,'theatre' => 0,'film' => 0,'comedy' => 0,'special-events' => 0);
+		$genres = array('exhibit' => 0,'dance' => 0,'opera' => 0,'classical' => 0,'music' => 0,'folk-and-world' => 0,'jazz-and-blues' => 0,'rock-and-pop' => 0,'theatre' => 0,'film' => 0,'comedy' => 0,'special-event' => 0);
 		
 		// Create a mapping array
-		$mappings = array('MUSEUM' => 'exhibit','DANCE' => 'dance','OPERA' => 'opera','CLASSICAL' => 'classical','MUSIC' => 'music','MUSIC:FOLKCELTIC' => 'folk-and-world','MUSIC:JAZZ' => 'jazz-and-blues','MUSIC:ROCK' => 'rock-and-pop','THEATRE' => 'theatre','FILM' => 'film','COMEDY' => 'comedy','SPECIALEVENTS' => 'special-events');
+		$mappings = array('MUSEUM' => 'exhibit','DANCE' => 'dance','OPERA' => 'opera','CLASSICAL' => 'classical','MUSIC' => 'music','MUSIC:FOLKCELTIC' => 'folk-and-world','MUSIC:JAZZ' => 'jazz-and-blues','MUSIC:ROCK' => 'rock-and-pop','THEATRE' => 'theatre','FILM' => 'film','COMEDY' => 'comedy','SPECIALEVENTS' => 'special-event');
 		
 		// Events are in a multidimensional array.
 		foreach($data['events'] as $events) {
