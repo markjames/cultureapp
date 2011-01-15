@@ -119,7 +119,8 @@ return array(
 		 * );
 		 */
 		'packages'	=> array(
-			'activemongo'
+			'activemongo',
+			'cultureapp'
 			//'activerecord',
 		),
 
