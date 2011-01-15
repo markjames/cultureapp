@@ -21,14 +21,19 @@
 <script type="text/javascript">
 	$(function(){
 		$('#search-button').click(function(){
+			$('#primary-content').addClass('calculating');
 			$.post('/search', {
 				"command": true,
 				"postcode": $('#postcode').val()
 			},
-			function(response, text, xmlrequest) {
+			function(response) {
 				for(var i in response) {
-					$('li.' + i).find('span').html(response[i]);
+					if($('li.' + i).length) {
+						$('li.' + i).find('span').html(response[i]);
+					}
 				}
+				
+				$('#score').html(response.total);
 				
 				$('#primary-content').removeClass('calculating');
 			}, "json");

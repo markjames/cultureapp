@@ -18,7 +18,7 @@
 
 			<?php include dirname(__file__) . "/../includes/tools.php"; ?>
 
-			<div id="primary-content" class="calculating" role="main">
+			<div id="primary-content" class="" role="main">
 
 				<div id="calculating" class="tk-bravia">Calculating&hellip;</div>
 

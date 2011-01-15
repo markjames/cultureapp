@@ -46,7 +46,7 @@ class Controller_Search extends Controller {
 	}
 	
 	private function _sort_events_into_genre($data) {
-		$genres = array('exhibit' => 0,'dance' => 0,'opera' => 0,'classical' => 0,'music' => 0,'folk-and-world' => 0,'jazz-and-blues' => 0,'rock-and-pop' => 0,'theatre' => 0,'film' => 0,'comedy' => 0,'special-event' => 0);
+		$genres = array('exhibit' => 0,'dance' => 0,'opera' => 0,'classical' => 0,'music' => 0,'folk-and-world' => 0,'jazz-and-blues' => 0,'rock-and-pop' => 0,'theatre' => 0,'film' => 0,'comedy' => 0,'special-event' => 0, 'total' => 0);
 		
 		// Create a mapping array
 		$mappings = array('MUSEUM' => 'exhibit','DANCE' => 'dance','OPERA' => 'opera','CLASSICAL' => 'classical','MUSIC' => 'music','MUSIC:FOLKCELTIC' => 'folk-and-world','MUSIC:JAZZ' => 'jazz-and-blues','MUSIC:ROCK' => 'rock-and-pop','THEATRE' => 'theatre','FILM' => 'film','COMEDY' => 'comedy','SPECIALEVENTS' => 'special-event');
@@ -59,6 +59,13 @@ class Controller_Search extends Controller {
 						$genres[$mappings[$genre]]++;
 					}
 				}
+			}
+		}
+		
+
+		foreach($genres as $genre) {
+			if($genre != 'total') {
+				$genres['total'] += $genre;
 			}
 		}
 		
