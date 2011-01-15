@@ -43,6 +43,30 @@
 							<?php endif; ?>
 						</ul>
 					<?php endif; ?>
+					
+					<?php if(isset($results['venues'])): ?>
+						<ul>
+							<li>Venues</li>
+							<?php foreach($results['venues'] as $venue): ?>
+								<li><?php echo $venue->title; ?></li>
+							<?php endforeach; ?>
+						</ul>
+					<?php endif; ?>
+					
+					<?php if(isset($results['events'])): ?>
+						<ul>
+							<li>Events</li>
+							<?php foreach($results['events'] as $event): ?>
+								<?php if(is_array($event)): ?>
+									<?php foreach($event as $e): ?>
+										<li><?php echo $e->title ?> : <?php echo implode(", ", $e->categories); ?></li>
+									<?php endforeach; ?>
+								<?php else: ?>
+									<li><?php echo $event->title ?> : <?php echo implode($event->categories); ?></li>
+								<?php endif; ?>
+							<?php endforeach; ?>
+						</ul>
+					<?php endif; ?>
 
 				</div><!-- /#unit-sample-content -->
 
