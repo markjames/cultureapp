@@ -57,7 +57,7 @@ class GDPDataImporter extends DataImporter {
 		    throw new \Exception('Could not find files in given directory: ' . $directory . $glob );
 		} else {
 			foreach($iterator as $item) {
-				$filename = $iterator->key();
+				$filename = $iterator->current();
 				
 				// Figure out which file is which
 				if( FALSE !== stripos($filename, '_TITLES_' ) ) {
