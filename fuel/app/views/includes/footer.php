@@ -39,19 +39,24 @@
 				$('#score').html(response.total);
 				$('#primary-content').removeClass('calculating');
 				
-				var graft_objects = {
-					nodes: {"CultureScore": {color: "red", shape: "dot", alpha: 1}}
-				};
-				
 				var sys = arbor.ParticleSystem();
+				sys.parameters({stiffness:900, repulsion:2000, gravity:true, dt:0.015})
 				sys.renderer = Renderer('#vis');
 				
 				var venue_objects = response.venues_list;
-				for(var k in venue_objects) {
-					sys.addNode(venue_objects[k].title);
-				}
 				
-				sys.graft(graft_objects);
+				var old_node = sys.getNode('CultureScore');
+				if(old_node) {
+					sys.pruneNode(old_node);
+				}
+				sys.addNode('CultureScore', {color: "red", shape: "dot", alpha: 1, link: "/"});
+				for(var k in venue_objects) {
+					var venue_object = venue_objects[k];
+					for(var j in venue_object) {
+						var node_obj = sys.addNode(venue_object[j].title, {color: "#b2b19d", alpha: 1, link: '#'});
+						sys.addEdge(node_obj, 'CultureScore', {length: 6});
+					}
+				}
 				
 			}, "json");
 			
