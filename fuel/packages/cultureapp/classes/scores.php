@@ -75,9 +75,35 @@ class Scores {
 		$this->_scores_data = $this->_normaliseScores( $scoreData );
 		$this->_calculateTotal();
 		$this->_sortVenueDistances($data['venues']);
+		$this->_scores_data['luvvie_name'] = $this->getAmusingName($this->_getPopularGenres());
 		
 		return $this;
 
+	}
+	
+	/**
+	 * Get the 'joke' name for the person
+	 *
+	 * @param array $genres
+	 * @return string
+	 */
+	public function getAmusingName( $genres ) {
+		$names = array(
+			'opera' => 'warbler',
+			'classical' => 'violinist',
+			'film' => 'film star',
+			'dance' => 'ballet dancer',
+			'rock-and-pop' => 'rock star',
+			'theatre' => '',
+			'exhibit' => 'ancient',
+			'music' => 'noise hurler',
+			'comedy' => 'comedian',
+			'folk-and-world' => 'enyanian',
+			'jazz-and-blues' => 'billy',
+			'special-events' => 'special'
+		);
+		$name = array_intersect_key($names, array_flip($genres['genres']));
+		return implode(', ', $name);
 	}
 	
 	/**
@@ -238,7 +264,26 @@ class Scores {
 			$this->_scores_data['total'] += $scores_data;
 		}
 		
+		$this->_scores_data['total'] = round($this->_scores_data['total'] /= count(self::$GPD_CATEGORY_MAP));
 		return $this->_scores_data;
+	}
+	
+	/**
+	 * Get the top 3 most popular genres for the person
+	 *
+	 * @param void
+	 * @return array
+	 */
+	private function _getPopularGenres() {
+		// Get the first 12 from the scores data
+		$genres = array_slice($this->_scores_data, 0, 12);
+		asort($genres);
+		$genres = array_reverse($genres);
+		
+		$popular = array();
+		$popular['genres'] = array_slice($genres, 0, 3);
+		$popular['genres'] = array_map( 'intval', $popular['genres'] );
+		return $popular;
 	}
 	
 	/**
@@ -266,7 +311,7 @@ class Scores {
 		);
 		
 		foreach( $scores_data as $g => $v ) {
-			$scores_data[$g] = round(($v / $totals[$g]) * 100);
+			$scores_data[$g] = round(round(($v / $totals[$g]) * 100) - (41 / min(max(1, 40), 40))) * 2;
 		}
 		return $scores_data;
 	}
