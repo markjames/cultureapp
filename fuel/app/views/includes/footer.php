@@ -56,7 +56,9 @@
 						$('li.' + i).find('span').html(response[i]);
 					}
 				}
-
+				console.log(response);
+				$('#luvvie-alarm').html(response.luvvie_name);
+				
 				// Drop in a tweet link
 				var twittermsg = 'My Culture Score is ' +response.total+ '! http://cultureapp.dyndns.org/ %23chd11';
 				$('#tweetlink').attr('href','http://twitter.com/home?status='+twittermsg);

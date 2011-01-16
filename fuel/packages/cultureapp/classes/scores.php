@@ -60,7 +60,13 @@ class Scores {
 	 * @return Scores
 	 */
 	public function calculateScoresForPostcode( $postcode ) {
-
+		
+		if($data = $this->checkCache($postcode)) {
+			sleep(1);
+			$this->_scores_data = $data;
+			return $this;
+		}
+		
 		// Load the data
 		$data = $this->_load_data_for_postcode($postcode);
 		$data = $this->_assignVenueCategories($data);
@@ -75,9 +81,81 @@ class Scores {
 		$this->_scores_data = $this->_normaliseScores( $scoreData );
 		$this->_calculateTotal();
 		$this->_sortVenueDistances($data['venues']);
+		$this->_scores_data['luvvie_name'] = $this->getAmusingName($this->_getPopularGenres());
+		
+		$this->genCache($postcode);
 		
 		return $this;
 
+	}
+	
+	public function checkCache( $postcode ) {
+		$cachefile = md5($postcode) . '.cache';
+		$cachelocation = dirname(__file__) . '/../cache/'. $cachefile;
+		
+		$cachelength = 60 * 60;
+		if(file_exists($cachelocation) && (filemtime($cachelocation) + $cachelength) > time()) {
+			return unserialize(file_get_contents($cachelocation));
+		} else {
+			return false;
+		}
+	}
+	
+	public function genCache($postcode) {
+		$cachefile = md5($postcode) . '.cache';
+		$cachelocation = dirname(__file__) . '/../cache/'. $cachefile;
+		
+		touch($cachelocation);
+		$handle = fopen($cachelocation, 'r+');
+		if(flock($handle, LOCK_EX)) {
+			ftruncate($handle, 0);
+			fwrite($handle, serialize($this->_scores_data));
+			flock($handle, LOCK_UN);
+			fclose($handle);
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * Get the 'joke' name for the person
+	 *
+	 * @param array $genres
+	 * @return string
+	 */
+	public function getAmusingName( $genres ) {
+		$names = array(
+			'opera' => 'Bellowing',
+			'classical' => 'Classic',
+			'film' => 'Hollywood',
+			'dance' => 'Dancing',
+			'rock-and-pop' => 'Rocking',
+			'theatre' => 'Prancing',
+			'exhibit' => 'Exhibiting',
+			'music' => 'Loud',
+			'comedy' => 'Hilarious',
+			'folk-and-world' => 'Folksy',
+			'jazz-and-blues' => 'Bebopping',
+			'special-event' => 'Special'
+		);
+		$names_nouns = array(
+			'opera' => 'Meistersinger',
+			'classical' => 'Maestro',
+			'film' => 'Director',
+			'dance' => 'Dancer',
+			'rock-and-pop' => 'Rockstar',
+			'theatre' => 'Actor',
+			'exhibit' => 'Curator',
+			'music' => 'Musician',
+			'comedy' => 'Comedian',
+			'folk-and-world' => 'Hippy',
+			'jazz-and-blues' => 'Trombonist',
+			'special-event' => 'Outcast'
+		);
+		
+		$keys = array_keys($genres['genres']);
+		return $names[$keys[0]] . ' ' . $names[$keys[1]] . ' ' . $names_nouns[$keys[2]]; 
 	}
 	
 	/**
@@ -241,7 +319,26 @@ class Scores {
 			$this->_scores_data['total'] += $scores_data;
 		}
 		
+		$this->_scores_data['total'] = round($this->_scores_data['total'] /= count(self::$GPD_CATEGORY_MAP));
 		return $this->_scores_data;
+	}
+	
+	/**
+	 * Get the top 3 most popular genres for the person
+	 *
+	 * @param void
+	 * @return array
+	 */
+	private function _getPopularGenres() {
+		// Get the first 12 from the scores data
+		$genres = array_slice($this->_scores_data, 0, 12);
+		asort($genres);
+		$genres = array_reverse($genres);
+		
+		$popular = array();
+		$popular['genres'] = array_slice($genres, 0, 3);
+		$popular['genres'] = array_map( 'intval', $popular['genres'] );
+		return $popular;
 	}
 	
 	/**
@@ -269,7 +366,7 @@ class Scores {
 		);
 		
 		foreach( $scores_data as $g => $v ) {
-			$scores_data[$g] = round(($v / $totals[$g]) * 100);
+			$scores_data[$g] = round(round(($v / $totals[$g]) * 100) - (41 / min(max(1, 40), 40))) * 2;
 		}
 		return $scores_data;
 	}
