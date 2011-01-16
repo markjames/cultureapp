@@ -23,11 +23,19 @@
 
 <script type="text/javascript">
 	$(function(){
-		$('#search-button').click(function(){
+		function getPostcodeSearch() {
 			$('#primary-content').addClass('calculating');
+			
+			var pcode = $('#postcode').val();
+			<?php if(isset($_GET['search'])): ?>
+			if(pcode == '') {
+				pcode = '<?php echo htmlentities($_GET['search'], ENT_QUOTES, "UTF-8"); ?>';
+			}
+			<?php endif; ?>
+			
 			$.post('/search', {
 				"command": true,
-				"postcode": $('#postcode').val()
+				"postcode": pcode
 			},
 			function(response) {
 				for(var i in response) {
@@ -61,6 +69,12 @@
 			}, "json");
 			
 			return false;
-		});
+		}
+		
+		$('#search-button').bind('click', getPostcodeSearch);
+		
+		<?php if(isset($_GET['search'])): ?>
+		$('#search-button').trigger('click');
+		<?php endif; ?>
 	});
 </script>
