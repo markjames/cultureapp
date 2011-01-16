@@ -66,14 +66,14 @@ var Renderer = function(elt) {
                     gfx.text(node.name, pt.x, pt.y + 7, {
                         color: "white",
                         align: "center",
-                        font: "Arial",
-                        size: 12
+                        font: "Helvetica",
+                        size: 15
                     })
                     gfx.text(node.name, pt.x, pt.y + 7, {
                         color: "white",
                         align: "center",
-                        font: "Arial",
-                        size: 12
+                        font: "Helvetica",
+                        size: 15
                     })
                 } else {
                     gfx.rect(pt.x - w / 2, pt.y - 8, w, 20, 4, {
@@ -83,14 +83,8 @@ var Renderer = function(elt) {
                     gfx.text(node.name, pt.x, pt.y + 9, {
                         color: "white",
                         align: "center",
-                        font: "Arial",
-                        size: 12
-                    })
-                    gfx.text(node.name, pt.x, pt.y + 9, {
-                        color: "white",
-                        align: "center",
-                        font: "Arial",
-                        size: 12
+                        font: "Helvetica",
+                        size: 11
                     })
                 }
             })
@@ -183,26 +177,15 @@ var Renderer = function(elt) {
                     _mouseP = arbor.Point(e.pageX - pos.left, e.pageY - pos.top)
                     nearest = sys.nearest(_mouseP);
 
+                    sys.eachNode(function(node) {
+                    	node.mass = (nearest.node.data.shape == 'dot') ? 30 : 1;
+                    });
+
                     if (!nearest.node) return false
 
-                    if (nearest.node.data.shape != 'dot') {
-                        selected = (nearest.distance < 50) ? nearest: null
-                        if (selected) {
-                            dom.addClass('linkable')
-                            window.status = selected.node.data.link.replace(/^\//, "http://" + window.location.host + "/").replace(/^#/, '')
-                        }
-                        else {
-                            dom.removeClass('linkable')
-                            window.status = ''
-                        }
-                    } else if ($.inArray(nearest.node.name, ['arbor.js', 'code', 'docs', 'demos']) >= 0) {
-                        if (nearest.node.name != _section) {
-                            _section = nearest.node.name
-                            that.switchSection(_section)
-                        }
-                        dom.removeClass('linkable')
-                        window.status = ''
-                    }
+                    nearest.node.mass = (nearest.node.data.shape == 'dot') ? 140 : 30;
+
+
 
                     return false
                 },
@@ -339,51 +322,6 @@ var Nav = function(elt) {
         },
         update: function() {
             var dt = 'fast'
-            if (_path === null) {
-                // this is the original page load. don't animate anything just jump
-                // to the proper state
-                _path = window.location.pathname.replace(/^\//, '')
-                dt = 0
-                dom.find('p').css('opacity', 0).show().fadeTo('slow', 1)
-            }
-
-            switch (_path) {
-            case '':
-            case '/':
-                dom.find('p').text('a graph visualization library using web workers and jQuery')
-                dom.find('> a').removeClass('active').attr('href', '#')
-
-                $('#docs').fadeTo('fast', 0,
-                function() {
-                    $(this).hide()
-                    $(that).trigger({
-                        type: 'mode',
-                        mode: 'visible',
-                        dt: dt
-                    })
-                })
-                document.title = "arbor.js"
-                break
-
-            case 'introduction':
-            case 'reference':
-                $(that).trigger({
-                    type:
-                    'mode',
-                    mode: 'hidden',
-                    dt: dt
-                })
-                dom.find('> p').text(_path)
-                dom.find('> a').addClass('active').attr('href', '#')
-                $('#docs').stop(true).css({
-                    opacity: 0
-                }).show().delay(333).fadeTo('fast', 1)
-
-                $('#docs').find(">div").hide()
-                $('#docs').find('#' + _path).show()
-                document.title = "arbor.js » " + _path
-                break
-            }
 
         }
     }

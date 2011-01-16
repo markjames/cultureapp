@@ -13,50 +13,18 @@
     // }
     $(document).ready(function() {
         var CLR = {
-            branch: "#b2b19d",
-            code: "orange",
-            doc: "#922E00",
-            demo: "#a7af00"
+            branch: "#888888",
         }
 
         var theUI = {
             nodes: {
-                "CultureScore": {
-                    color: "red",
+                "YOU": {
+                    color: "black",
                     shape: "dot",
                     alpha: 1
-                },
-                Your: {
-                    color: CLR.branch,
-                    shape: "dot",
-                    alpha: 1
-                },
-                Culture: {
-                    color: CLR.branch,
-                    shape: "dot",
-                    alpha: 1
-                },
-                Score: {
-                    color: CLR.branch,
-                    shape: "dot",
-                    alpha: 1
-                },
+                }
             },
             edges: {
-                "CultureScore": {
-                    Your: {
-                        length: 6
-                    },
-                    Culture: {
-                        length: 6
-                    },
-                    Score: {
-                        length: 6
-                    }
-                },
-                Your: {},
-                Culture: {},
-                Score: {}
             }
         }
 

@@ -45,16 +45,16 @@
 				
 				var venue_objects = response.venues_list;
 				
-				var old_node = sys.getNode('CultureScore');
+				var old_node = sys.getNode('YOU');
 				if(old_node) {
 					sys.pruneNode(old_node);
 				}
-				sys.addNode('CultureScore', {color: "red", shape: "dot", alpha: 1, link: "/"});
+				sys.addNode('YOU', {color: "black", shape: "dot", alpha: 1, link: "/"});
 				for(var k in venue_objects) {
 					var venue_object = venue_objects[k];
 					for(var j in venue_object) {
-						var node_obj = sys.addNode(venue_object[j].title, {color: "#b2b19d", alpha: 1, link: '#'});
-						sys.addEdge(node_obj, 'CultureScore', {length: j});
+						var node_obj = sys.addNode(venue_object[j].title, {color: "#31B5C5", alpha: 1, link: '#'});
+						sys.addEdge(node_obj, 'YOU', {length: j});
 					}
 				}
 				
