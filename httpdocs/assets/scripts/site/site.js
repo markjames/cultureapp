@@ -28,12 +28,13 @@
             }
         }
 
-
-        var sys = arbor.ParticleSystem()
+		var sys;
+        document.sys = sys = arbor.ParticleSystem()
         sys.parameters({
-            stiffness: 900,
+            stiffness: 350,
             repulsion: 2000,
             gravity: true,
+            friction: 0.3,
             dt: 0.015
         })
         sys.renderer = Renderer("#vis")

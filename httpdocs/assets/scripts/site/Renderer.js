@@ -178,14 +178,13 @@ var Renderer = function(elt) {
                     nearest = sys.nearest(_mouseP);
 
                     sys.eachNode(function(node) {
-                    	node.mass = (nearest.node.data.shape == 'dot') ? 30 : 1;
+                    	node.mass = (nearest.node.data.shape == 'dot') ? 120 : 3;
                     });
 
+                    if( !nearest ) return false;
                     if (!nearest.node) return false
 
-                    nearest.node.mass = (nearest.node.data.shape == 'dot') ? 140 : 30;
-
-
+                    nearest.node.mass = (nearest.node.data.shape == 'dot') ? 840 : 20;
 
                     return false
                 },
