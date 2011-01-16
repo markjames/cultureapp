@@ -46,10 +46,12 @@ class Scores {
 		'THEATRE' => 'theatre',
 		'FILM' => 'film',
 		'COMEDY' => 'comedy',
-		'SPECIALEVENTS' => 'special-events'
+		'SPECIALEVENTS' => 'special-event'
 	);
 
 	public $_searchDistanceInMiles = 15;
+	
+	public $_scores_data;
 
 	/**
 	 * Calculate scores for postcode
@@ -60,7 +62,7 @@ class Scores {
 	public function calculateScoresForPostcode( $postcode ) {
 
 		// Load the data
-		$data = $this->_load_data_for_postcode();
+		$data = $this->_load_data_for_postcode($postcode);
 		
 		$this->_lat = $data['postcode']->lat;
 		$this->_lng = $data['postcode']->lng;
@@ -69,10 +71,21 @@ class Scores {
 		$scoreData = $this->_calculateGenreScores( $data['events'] );
 
 		// Normalise the scores
-		$scoreData = $this->_normaliseScores( $scoreData );
+		$this->_scores_data = $this->_normaliseScores( $scoreData );
+		$this->_calculateTotal();
+		
+		return $this;
 
-		return $scoreData;
-
+	}
+	
+	/**
+	 * Export the data as a json object
+	 *
+	 * @param void
+	 * @return JSON Object
+	 */
+	public function toJson() {
+		return json_encode($this->_scores_data);
 	}
 
 	/** 
@@ -90,8 +103,8 @@ class Scores {
 		$postcode = strtoupper($postcode);
 		
 		$data = array();
-		$postcode_search = new Postcodes();
-		$venue_search = new Venues();
+		$postcode_search = new \Postcodes();
+		$venue_search = new \Venues();
 		
 		// Get the postcode
 		$postcode_items = $postcode_search->findOne(
@@ -106,7 +119,7 @@ class Scores {
 		);
 
 		// Load events
-		$events = new Events();
+		$events = new \Events();
 		$event_items = array();
 		foreach($venue_items as $venue_item) {
 			$event_items[] = $events->find_by_venue_id($venue_item->source_id);
@@ -126,11 +139,19 @@ class Scores {
 	 * @param mixed $event Event
 	 * @return array
 	 */
-	private function _scoreEvent( $event ) {
-
+	private function _scoreEvent( $events ) {
+		
 		$genres = array();
-		foreach( $event->categories as $category ) {
-			$genres[$category] += 1;
+		foreach($events as $event) {
+			foreach( $event->categories as $category ) {
+				if(isset(static::$GPD_CATEGORY_MAP[$category])) {
+					if(isset($genres[static::$GPD_CATEGORY_MAP[$category]])) {
+						$genres[static::$GPD_CATEGORY_MAP[$category]] += 1;
+					} else {
+						$genres[static::$GPD_CATEGORY_MAP[$category]] = 1;
+					}
+				}
+			}
 		}
 		return $genres;
 
@@ -146,12 +167,37 @@ class Scores {
 
 		$genreScores = array('exhibit' => 0,'dance' => 0,'opera' => 0,'classical' => 0,'music' => 0,'folk-and-world' => 0,'jazz-and-blues' => 0,'rock-and-pop' => 0,'theatre' => 0,'film' => 0,'comedy' => 0,'special-event' => 0);
 		foreach( $events as $event ) {
-			foreach( $this->_scoreEvent as $genre => $score ) {
+			foreach( $this->_scoreEvent($event) as $genre => $score ) {
 				$genreScores[$genre] += $score;
 			}
 		}
 		return $genreScores;
 
 	}
-
+	
+	/**
+	 * Generate a total score
+	 *
+	 * @param void
+	 * @return array
+	 */
+	private function _calculateTotal() {
+		$this->_scores_data['total'] = 0;
+		foreach($this->_scores_data as $scores_data) {
+			$this->_scores_data['total'] += $scores_data;
+		}
+		
+		return $this->_scores_data;
+	}
+	
+	/**
+	 * Normalise event scores.
+	 *
+	 * @param mixed $scores_data
+	 * @return array
+	 */
+	public function _normaliseScores( $scores_data ) {
+		return $scores_data;
+	}
+	
 }
