@@ -23,6 +23,14 @@
 
 <script type="text/javascript">
 	$(function(){
+		
+		window.onpopstate = function(event) {
+			if( event.state && event.state.postcode ) {
+				$('#postcode').val( event.state.postcode );
+				getPostcodeSearch();
+			}
+		}
+		
 		function getPostcodeSearch() {
 			$('#primary-content').addClass('calculating');
 			
@@ -32,6 +40,11 @@
 				pcode = '<?php echo htmlentities($_GET['search'], ENT_QUOTES, "UTF-8"); ?>';
 			}
 			<?php endif; ?>
+			
+			// Change Browser URL
+			if( window.history && window.history.pushState ) {
+				window.history.pushState({postcode: pcode}, "CultureScore: " + pcode, "/?search=" + pcode);
+			}
 			
 			$.post('/search', {
 				"command": true,
@@ -43,12 +56,11 @@
 						$('li.' + i).find('span').html(response[i]);
 					}
 				}
-				
-				console.log(response);
+
 				$('#luvvie-alarm').html(response.luvvie_name);
 				
 				// Drop in a tweet link
-				var twittermsg = 'My Culture Score is ' +response.total+ '! http://cultureapp.dyndns.org/ #chd11';
+				var twittermsg = 'My Culture Score is ' +response.total+ '! http://cultureapp.dyndns.org/ %23chd11';
 				$('#tweetlink').attr('href','http://twitter.com/home?status='+twittermsg);
 				$('#tweetlink').text(twittermsg).parent().fadeIn();
 				
