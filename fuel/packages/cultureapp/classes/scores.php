@@ -140,16 +140,21 @@ class Scores {
 	 * @return array
 	 */
 	private function _scoreEvent( $events ) {
-		
 		$genres = array();
 		foreach($events as $event) {
+			$venue = new \Venues();
+			$event_venue = $venue->find(array('source_id' => $event->venue_id));
+			// Create an approximation of the distance based on a square root of the locations.
+			$distance = sqrt(pow($event_venue->loc['lat'] - $this->_lat, 2) + pow($event_venue->loc['lng'] - $this->_lng, 2));
+			$distance = round($distance * 100);
+			
 			foreach( $event->categories as $category ) {
 				if(isset(static::$GPD_CATEGORY_MAP[$category])) {
-					// $score = $distance;
+					$score = 11 / min(max(1, $this->_searchDistanceInMiles), 10);
 					if(isset($genres[static::$GPD_CATEGORY_MAP[$category]])) {
-						$genres[static::$GPD_CATEGORY_MAP[$category]] += 1;
+						$genres[static::$GPD_CATEGORY_MAP[$category]] += $score;
 					} else {
-						$genres[static::$GPD_CATEGORY_MAP[$category]] = 1;
+						$genres[static::$GPD_CATEGORY_MAP[$category]] = $score;
 					}
 				}
 			}
