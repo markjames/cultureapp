@@ -73,6 +73,7 @@ class Scores {
 		// Normalise the scores
 		$this->_scores_data = $this->_normaliseScores( $scoreData );
 		$this->_calculateTotal();
+		$this->_sortVenueDistances($data['venues']);
 		
 		return $this;
 
@@ -86,6 +87,16 @@ class Scores {
 	 */
 	public function toJson() {
 		return json_encode($this->_scores_data);
+	}
+	
+	/**
+	 * Get the venue distances
+	 *
+	 * @param void
+	 * @return array
+	 */
+	public function getVenueDistances() {
+		return $this->venue_distances;
 	}
 
 	/** 
@@ -202,7 +213,7 @@ class Scores {
 	 * @param mixed $scores_data
 	 * @return array
 	 */
-	public function _normaliseScores( $scores_data ) {
+	private function _normaliseScores( $scores_data ) {
 		
 		// Need to update to update from data
 		$totals = array(
@@ -224,6 +235,28 @@ class Scores {
 			$scores_data[$g] = round(($v / $totals[$g]) * 100);
 		}
 		return $scores_data;
+	}
+	
+	/**
+	 * Get the venue distance to plot on graph
+	 *
+	 * @param mixed $venues
+	 * @param int $lat
+	 * @param int $long
+	 * @param int $max_distance
+	 * @return array
+	 */
+	private function _sortVenueDistances( $venues, $max_distance = 10 ) {
+		$venues_list = array();
+		foreach($venues as $venue) {
+			$distance = sqrt(pow($venue->loc['lat'] - $this->_lat, 2) + pow($venue->loc['lng'] - $this->_lng, 2));
+			$distance = round($distance * 100);
+			
+			if($distance < $max_distance) {
+				$venues_list[$distance][] = $venue;
+			}
+		}
+		return $this->_scores_data['venues_list'] = $venues_list;
 	}
 	
 }

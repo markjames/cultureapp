@@ -46,7 +46,7 @@
 			</div><!-- /#primary-content -->
 
 			<div id="secondary-content" role="complementary">
-				<div id="canvas"></div>
+				<div id="canvas"><canvas id="vis"></canvas></div>
 			</div><!-- /#secondary-content -->
 		</div><!-- /#page-content -->
 

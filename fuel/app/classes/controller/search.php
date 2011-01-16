@@ -8,8 +8,8 @@ class Controller_Search extends Controller {
 			$scores = new \Cultureapp\Scores();
 			$totals = $scores->calculateScoresForPostcode($_POST['postcode'])->toJson();
 		}
-		header('Content-Type: application/json');
 		
+		header('Content-Type: application/json');
 		echo $totals;
 		
 		// $this->render('search/index');
