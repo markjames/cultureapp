@@ -62,7 +62,8 @@
 					}
 				}
 				
-				$('#luvvie-alarm').children('p').html(response.luvvie_name);
+				$('#luvvie-alarm').children('p').html(response.luvvie_name).bigtext();
+				$('#luvvie-alarm').children('span').html('You are a...');
 				
 				// Drop in a tweet link
 				var twittermsg = 'I\'m a ' + response.luvvie_name + '! http://cultureapp.dyndns.org/ %23chd11';
