@@ -89,21 +89,36 @@ class Scores {
 	 */
 	public function getAmusingName( $genres ) {
 		$names = array(
-			'opera' => 'warbler',
-			'classical' => 'violinist',
-			'film' => 'film star',
-			'dance' => 'ballet dancer',
-			'rock-and-pop' => 'rock star',
-			'theatre' => '',
-			'exhibit' => 'ancient',
-			'music' => 'noise hurler',
-			'comedy' => 'comedian',
-			'folk-and-world' => 'enyanian',
-			'jazz-and-blues' => 'billy',
-			'special-events' => 'special'
+			'opera' => 'Bellowing',
+			'classical' => 'Classic',
+			'film' => 'Hollywood',
+			'dance' => 'Dancing',
+			'rock-and-pop' => 'Rocking',
+			'theatre' => 'Prancing',
+			'exhibit' => 'Exhibiting',
+			'music' => 'Loud',
+			'comedy' => 'Hilarious',
+			'folk-and-world' => 'Folksy',
+			'jazz-and-blues' => 'Bebopping',
+			'special-events' => 'Special'
 		);
-		$name = array_intersect_key($names, array_flip($genres['genres']));
-		return implode(', ', $name);
+		$names_nouns = array(
+			'opera' => 'Meistersinger',
+			'classical' => 'Maestro',
+			'film' => 'Director',
+			'dance' => 'Dancer',
+			'rock-and-pop' => 'Rockstar',
+			'theatre' => 'Actor',
+			'exhibit' => 'Curator',
+			'music' => 'Musician',
+			'comedy' => 'Comedian',
+			'folk-and-world' => 'Hippy',
+			'jazz-and-blues' => 'Trombonist',
+			'special-events' => 'Outcast'
+		);
+		
+		$keys = array_keys($genres['genres']);
+		return $names[$keys[0]] . ', ' . $names[$keys[1]] . ' ' . $names_nouns[$keys[2]]; 
 	}
 	
 	/**

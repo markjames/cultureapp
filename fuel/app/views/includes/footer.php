@@ -56,7 +56,7 @@
 						$('li.' + i).find('span').html(response[i]);
 					}
 				}
-
+				console.log(response);
 				$('#luvvie-alarm').html(response.luvvie_name);
 				
 				// Drop in a tweet link
