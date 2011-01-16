@@ -100,7 +100,7 @@ class Scores {
 			'comedy' => 'Hilarious',
 			'folk-and-world' => 'Folksy',
 			'jazz-and-blues' => 'Bebopping',
-			'special-events' => 'Special'
+			'special-event' => 'Special'
 		);
 		$names_nouns = array(
 			'opera' => 'Meistersinger',
@@ -114,7 +114,7 @@ class Scores {
 			'comedy' => 'Comedian',
 			'folk-and-world' => 'Hippy',
 			'jazz-and-blues' => 'Trombonist',
-			'special-events' => 'Outcast'
+			'special-event' => 'Outcast'
 		);
 		
 		$keys = array_keys($genres['genres']);
