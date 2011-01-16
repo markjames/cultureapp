@@ -48,7 +48,7 @@
 			
 			// Change Browser URL
 			if( window.history && window.history.pushState ) {
-				window.history.pushState({postcode: pcode}, "CultureScore: " + pcode, "/?search=" + pcode);
+				window.history.pushState({postcode: pcode}, "LuvvieScore: " + pcode, "/?search=" + pcode);
 			}
 			
 			$.post('/search', {

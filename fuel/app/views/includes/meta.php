@@ -3,7 +3,7 @@
 <meta http-equiv="imagetoolbar" content="no">
 
 <!-- Standard Metadata -->
-<title>CultureScore</title>
+<title>LuvvieScore</title>
 <meta name="description" content="Not yet...">
 <meta name="author" content="Mark James &amp; Andrew Lowther">
 <meta name="keywords" content="">
