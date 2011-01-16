@@ -65,7 +65,7 @@
 				$('#luvvie-alarm').children('p').html(response.luvvie_name);
 				
 				// Drop in a tweet link
-				var twittermsg = 'My Culture Score is ' +response.total+ '! http://cultureapp.dyndns.org/ %23chd11';
+				var twittermsg = 'I\'m a ' + response.luvvie_name + '! http://cultureapp.dyndns.org/ %23chd11';
 				$('#tweetlink').attr('href','http://twitter.com/home?status='+twittermsg);
 				$('#tweetlink').text(twittermsg).parent().fadeIn();
 				
