@@ -63,6 +63,7 @@ class Scores {
 
 		// Load the data
 		$data = $this->_load_data_for_postcode($postcode);
+		$data = $this->_assignVenueCategories($data);
 		
 		$this->_lat = $data['postcode']->lat;
 		$this->_lng = $data['postcode']->lng;
@@ -172,6 +173,39 @@ class Scores {
 		}
 		return $genres;
 
+	}
+	
+	/**
+	 * Assign a category to a venue based on events
+	 *
+	 * @param array $data
+	 * @return array
+	 */
+	private function _assignVenueCategories( $data ) {
+		$venues = array();
+		foreach($data['venues'] as $venue) {
+			foreach($data['events'] as $events) {
+				foreach($events as $event) {
+					if($event->venue_id == $venue->source_id) {
+						foreach($event->categories as $category) {
+							if(isset(static::$GPD_CATEGORY_MAP[$category])) {
+								$cat = static::$GPD_CATEGORY_MAP[$category];
+								if(isset($venue->genre->$cat)) {
+									$venue->genre->$cat + 1;
+								} else {
+									$venue->genre->$cat = 1;
+								}
+							}
+						}
+						$venues[] = $venue;
+					}
+				}
+			}
+		}
+		
+		$data['venues'] = $venues;
+		
+		return $data;
 	}
 
 	/**
