@@ -145,6 +145,7 @@ class Scores {
 		foreach($events as $event) {
 			foreach( $event->categories as $category ) {
 				if(isset(static::$GPD_CATEGORY_MAP[$category])) {
+					// $score = $distance;
 					if(isset($genres[static::$GPD_CATEGORY_MAP[$category]])) {
 						$genres[static::$GPD_CATEGORY_MAP[$category]] += 1;
 					} else {
