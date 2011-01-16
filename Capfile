@@ -19,3 +19,10 @@ set :repository, "https://github.com/markjames/#{application}.git"
 set :scm, :git
 
 set :user, "root"
+
+namespace :deploy do
+  desc "Add the cache file for the objects"
+  task :fixcache do
+    sudo "mkdir #{deploy_to}/fuel/packages/cultureapp/cache && chmod 777 #{deploy_to}/fuel/packages/cultureapp/cache";
+  end
+end
