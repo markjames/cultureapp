@@ -479,8 +479,19 @@ header {
 
 #luvvie-alarm {
 	width: 940px;
-	font-size: 32pt;
+}
+
+#luvvie-alarm span {
+	width: 940px;
+	float: left;
+	text-align: left;
+	font-size: 14pt;
+}
+
+#luvvie-alarm p {
 	text-align: center;
+	margin: 0;
+	font-size: 32pt;
 }
 
 /* @end */

@@ -18,7 +18,7 @@
 
 			<?php include dirname(__file__) . "/../includes/tools.php"; ?>
 
-			<div id="luvvie-alarm" width="940px"><p></p></div>
+			<div id="luvvie-alarm" width="940px"><span></span><p width="940px"></p></div>
 			
 			<div id="primary-content" class="" role="main">
 
