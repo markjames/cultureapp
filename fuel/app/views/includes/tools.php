@@ -14,7 +14,8 @@
 
 	<section id="unit-timeline" class="unit">
 
-		<p>Enter a postcode (Birmingham only until we chase more data - try <a href="?search=B1 3AP">B1 3AP</a> or <a href="?search=B42 1SH">B42 1SH</a>)</p>
+		<p>Enter a postcode (Birmingham only until we chase more data - try <a href="?search=B1 3AP">B1 3AP</a> or <a href="?search=B42 1SH">B42 1SH</a>)<br />
+			<a href="?search=B26 1TH">Example One</a> - <a href="?search=B26 2TR">Example Two</a> - <a href="?search=B33 0XJ">Example Three</a></p>
 	</section>
 
 </div>
