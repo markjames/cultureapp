@@ -4,9 +4,9 @@ class Controller_Search extends Controller {
 		
 	public function action_index() {
 		$results = array();
-		if(isset($_POST['command'])) {
+		if(isset($_REQUEST['command'])) {
 			$scores = new \Cultureapp\Scores();
-			$totals = $scores->calculateScoresForPostcode($_POST['postcode'])->toJson();
+			$totals = $scores->calculateScoresForPostcode($_REQUEST['postcode'])->toJson();
 		}
 		
 		header('Content-Type: application/json');

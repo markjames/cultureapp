@@ -182,29 +182,32 @@ class Scores {
 	 * @return array
 	 */
 	private function _assignVenueCategories( $data ) {
+
 		$venues = array();
-		foreach($data['venues'] as $venue) {
-			foreach($data['events'] as $events) {
-				foreach($events as $event) {
-					if($event->venue_id == $venue->source_id) {
-						foreach($event->categories as $category) {
-							if(isset(static::$GPD_CATEGORY_MAP[$category])) {
-								$cat = static::$GPD_CATEGORY_MAP[$category];
-								if(isset($venue->genre->$cat)) {
-									$venue->genre->$cat + 1;
-								} else {
-									$venue->genre->$cat = 1;
-								}
-							}
+		foreach( $data['venues'] as $venue ) {
+			$venues[$venue->source_id] = $venue;
+		}
+		$data['venues'] = $venues;
+
+		foreach($data['events'] as $eventskey => $events) {
+			foreach($events as $eventkey => $event) {
+				foreach($event->categories as $category) {
+
+					$venue = $venues[$event->venue_id];
+
+					if(isset(static::$GPD_CATEGORY_MAP[$category])) {
+						$cat = static::$GPD_CATEGORY_MAP[$category];
+						if(isset($venue->genre->$cat)) {
+							$venues[$venue->source_id]->genre->$cat + 1;
+						} else {
+							$venues[$venue->source_id]->genre->$cat = 1;
 						}
-						$venues[] = $venue;
 					}
+					
 				}
 			}
 		}
-		
-		$data['venues'] = $venues;
-		
+
 		return $data;
 	}
 
@@ -282,13 +285,15 @@ class Scores {
 	 */
 	private function _sortVenueDistances( $venues, $max_distance = 10, $limit = 50 ) {
 		$venues_list = array();
-		foreach($venues as $key => $venue) {
+		$key = 0;
+		foreach($venues as $venue) {
 			$distance = sqrt(pow($venue->loc['lat'] - $this->_lat, 2) + pow($venue->loc['lng'] - $this->_lng, 2));
 			$distance = round($distance * 100);
 			
 			if($distance < $max_distance && ($key + 1) < $limit) {
 				$venues_list[$distance][] = $venue;
 			}
+			$key++;
 		}
 		return $this->_scores_data['venues_list'] = $venues_list;
 	}
