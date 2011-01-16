@@ -49,7 +49,7 @@ class Scores {
 		'SPECIALEVENTS' => 'special-event'
 	);
 
-	public $_searchDistanceInMiles = 15;
+	public $_searchDistanceInMiles = 10;
 	
 	public $_scores_data;
 
@@ -197,6 +197,26 @@ class Scores {
 	 * @return array
 	 */
 	public function _normaliseScores( $scores_data ) {
+		
+		// Need to update to update from data
+		$totals = array(
+			'dance' => 26,
+			'exhibit' => 77,
+			'opera' => 14,
+			'classical' => 111,
+			'music' => 555,
+			'folk-and-world' => 69,
+			'jazz-and-blues' => 71,
+			'rock-and-pop' => 132,
+			'theatre' => 102,
+			'film' => 215,
+			'comedy' => 108,
+			'special-event' => 1366
+		);
+		
+		foreach( $scores_data as $g => $v ) {
+			$scores_data[$g] = round(($v / $totals[$g]) * 100);
+		}
 		return $scores_data;
 	}
 	
