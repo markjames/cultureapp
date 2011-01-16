@@ -246,7 +246,7 @@ class Scores {
 	 * @param int $max_distance
 	 * @return array
 	 */
-	private function _sortVenueDistances( $venues, $max_distance = 10, $limit = 60 ) {
+	private function _sortVenueDistances( $venues, $max_distance = 10, $limit = 50 ) {
 		$venues_list = array();
 		foreach($venues as $key => $venue) {
 			$distance = sqrt(pow($venue->loc['lat'] - $this->_lat, 2) + pow($venue->loc['lng'] - $this->_lng, 2));
