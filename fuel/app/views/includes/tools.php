@@ -14,7 +14,7 @@
 
 	<section id="unit-timeline" class="unit">
 
-		<p>Enter a postcode (Birmingham only until we chase more data - try B1 3AP)<br>The app will calculate how cultured your postcode is for different genres.</p>
+		<p>Enter a postcode (Birmingham only until we chase more data - try <a href="?search=B1 3AP">B1 3AP</a> or <a href="?search=B42 1SH">B42 1SH</a>)</p>
 	</section>
 
 </div>

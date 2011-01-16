@@ -75,11 +75,16 @@
 				
 				$('#score').html(response.total);
 				$('#primary-content').removeClass('calculating');
-				
-				var sys = arbor.ParticleSystem();
-				sys.parameters({stiffness:900, repulsion:2000, gravity:true, dt:0.015})
-				sys.renderer = Renderer('#vis');
-				
+
+				// Don't do this
+				var sys = document.sys;
+				sys.eachNode(function(n) {
+					sys.pruneNode(n);
+				});
+//				document.sys = sys = arbor.ParticleSystem();
+//				sys.parameters({stiffness:300, repulsion:2000, gravity:true, dt:0.015})
+//				sys.renderer = Renderer('#vis');
+
 				var venue_objects = response.venues_list;
 
 				var old_node = sys.getNode('YOU');

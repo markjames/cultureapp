@@ -181,6 +181,7 @@ var Renderer = function(elt) {
                     	node.mass = (nearest.node.data.shape == 'dot') ? 120 : 3;
                     });
 
+                    if( !nearest ) return false;
                     if (!nearest.node) return false
 
                     nearest.node.mass = (nearest.node.data.shape == 'dot') ? 840 : 20;

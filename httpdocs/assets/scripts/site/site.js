@@ -28,8 +28,8 @@
             }
         }
 
-
-        var sys = arbor.ParticleSystem()
+		var sys;
+        document.sys = sys = arbor.ParticleSystem()
         sys.parameters({
             stiffness: 350,
             repulsion: 2000,
