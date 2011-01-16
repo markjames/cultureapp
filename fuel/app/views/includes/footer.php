@@ -66,8 +66,12 @@
 				sys.renderer = Renderer('#vis');
 				
 				var venue_objects = response.venues_list;
-				
+
 				var old_node = sys.getNode('YOU');
+
+				var genre_colours = {"default": "#b2b19d", "exhibit": "#AF2E7D","dance": "#D11418","opera": "#DE007D","classical": "#E05D00","music": "#244BD4","folk-and-world": "#1689AF","jazz-and-blues": "#316EAF","rock-and-pop": "#0057C6","theatre": "#9700F0","film": "#57837D","comedy": "#EAB300","special-event": "#004902"};
+				var old_node = sys.getNode('YOU');
+
 				if(old_node) {
 					sys.pruneNode(old_node);
 				}
@@ -75,8 +79,22 @@
 				for(var k in venue_objects) {
 					var venue_object = venue_objects[k];
 					for(var j in venue_object) {
-						var node_obj = sys.addNode(venue_object[j].title, {color: "#31B5C5", alpha: 1, link: '#'});
+						
+ 						var active_genre = "default";
+						var top_genre_score = 0;
+						if(typeof venue_object[j].genre != 'undefined') {
+							var genres = venue_object[j].genre;
+							for(var l in genres) {
+								if( top_genre_score < genres[l] ) {
+									top_genre_score = genres[l];
+									active_genre = l;
+								}
+							}
+						}
+						
+						var node_obj = sys.addNode(venue_object[j].title, {color: genre_colours[active_genre], alpha: 1, link: '#'});
 						sys.addEdge(node_obj, 'YOU', {length: j});
+
 					}
 				}
 				
