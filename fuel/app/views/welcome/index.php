@@ -18,9 +18,9 @@
 
 			<?php include dirname(__file__) . "/../includes/tools.php"; ?>
 
+			<div id="luvvie-alarm"></div>
+			
 			<div id="primary-content" class="" role="main">
-				
-				<div id="luvvie-alarm"></div>
 
 				<div id="calculating" class="tk-bravia">Calculating&hellip;</div>
 
