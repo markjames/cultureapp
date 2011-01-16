@@ -23,7 +23,6 @@
 
 <script type="text/javascript">
 	$(function(){
-		//$('#tweet').hide();
 		function getPostcodeSearch() {
 			$('#primary-content').addClass('calculating');
 			
