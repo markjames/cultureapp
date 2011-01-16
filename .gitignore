@@ -1,3 +1,4 @@
 .DS_Store
 ._
 fuel/app/logs/*
+fuel/packages/cultureapp/cache/*

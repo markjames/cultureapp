@@ -60,7 +60,13 @@ class Scores {
 	 * @return Scores
 	 */
 	public function calculateScoresForPostcode( $postcode ) {
-
+		
+		if($data = $this->checkCache($postcode)) {
+			sleep(1);
+			$this->_scores_data = $data;
+			return $this;
+		}
+		
 		// Load the data
 		$data = $this->_load_data_for_postcode($postcode);
 		$data = $this->_assignVenueCategories($data);
@@ -77,8 +83,39 @@ class Scores {
 		$this->_sortVenueDistances($data['venues']);
 		$this->_scores_data['luvvie_name'] = $this->getAmusingName($this->_getPopularGenres());
 		
+		$this->genCache($postcode);
+		
 		return $this;
 
+	}
+	
+	public function checkCache( $postcode ) {
+		$cachefile = md5($postcode) . '.cache';
+		$cachelocation = dirname(__file__) . '/../cache/'. $cachefile;
+		
+		$cachelength = 60 * 60;
+		if(file_exists($cachelocation) && (filemtime($cachelocation) + $cachelength) > time()) {
+			return unserialize(file_get_contents($cachelocation));
+		} else {
+			return false;
+		}
+	}
+	
+	public function genCache($postcode) {
+		$cachefile = md5($postcode) . '.cache';
+		$cachelocation = dirname(__file__) . '/../cache/'. $cachefile;
+		
+		touch($cachelocation);
+		$handle = fopen($cachelocation, 'r+');
+		if(flock($handle, LOCK_EX)) {
+			ftruncate($handle, 0);
+			fwrite($handle, serialize($this->_scores_data));
+			flock($handle, LOCK_UN);
+			fclose($handle);
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	/**
@@ -118,7 +155,7 @@ class Scores {
 		);
 		
 		$keys = array_keys($genres['genres']);
-		return $names[$keys[0]] . ', ' . $names[$keys[1]] . ' ' . $names_nouns[$keys[2]]; 
+		return $names[$keys[0]] . ' ' . $names[$keys[1]] . ' ' . $names_nouns[$keys[2]]; 
 	}
 	
 	/**
