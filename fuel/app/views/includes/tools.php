@@ -5,7 +5,7 @@
 		<form method="post" name="culture-search">
 			<div class="field field-first field-100">
 				<label for="postcode">Postcode: </label>
-				<input type="text" name="postcode" id="postcode" class="text">
+				<input type="text" name="postcode" id="postcode" class="text"<?php if(isset($_GET['search'])): ?> value="<?php echo htmlentities($_GET['search'], ENT_QUOTES, "UTF-8") ?>"<?php endif; ?>>
 			</div>
 			<button id="search-button">Go</button>
 		</form>
