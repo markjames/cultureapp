@@ -54,7 +54,7 @@
 					var venue_object = venue_objects[k];
 					for(var j in venue_object) {
 						var node_obj = sys.addNode(venue_object[j].title, {color: "#b2b19d", alpha: 1, link: '#'});
-						sys.addEdge(node_obj, 'CultureScore', {length: 6});
+						sys.addEdge(node_obj, 'CultureScore', {length: j});
 					}
 				}
 				
