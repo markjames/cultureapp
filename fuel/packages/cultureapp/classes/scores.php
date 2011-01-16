@@ -155,7 +155,7 @@ class Scores {
 		);
 		
 		$keys = array_keys($genres['genres']);
-		return $names[$keys[0]] . ' ' . $names[$keys[1]] . ' ' . $names_nouns[$keys[2]]; 
+		return $names[$keys[0]] . ' ' . $names_nouns[$keys[1]]; 
 	}
 	
 	/**
@@ -336,7 +336,7 @@ class Scores {
 		$genres = array_reverse($genres);
 		
 		$popular = array();
-		$popular['genres'] = array_slice($genres, 0, 3);
+		$popular['genres'] = array_slice($genres, 0, 2);
 		$popular['genres'] = array_map( 'intval', $popular['genres'] );
 		return $popular;
 	}
