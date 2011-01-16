@@ -12,6 +12,9 @@
 <script src="assets/scripts/arbor/arbor-tween.js"></script>
 <script src="assets/scripts/arbor/arbor-graphics.js"></script>
 
+<!-- Big text -->
+<script src="assets/scripts/bigtext.js"></script>
+
 <!-- Site scripts -->
 <script src="assets/scripts/site/site.js"></script>
 <script src="assets/scripts/site/Renderer.js"></script>
@@ -23,6 +26,8 @@
 
 <script type="text/javascript">
 	$(function(){
+		
+		// $('#luvvie-alarm').bigtext();
 		
 		window.onpopstate = function(event) {
 			if( event.state && event.state.postcode ) {
@@ -56,8 +61,8 @@
 						$('li.' + i).find('span').html(response[i]);
 					}
 				}
-				console.log(response);
-				$('#luvvie-alarm').html(response.luvvie_name);
+				
+				$('#luvvie-alarm').children('p').html(response.luvvie_name);
 				
 				// Drop in a tweet link
 				var twittermsg = 'My Culture Score is ' +response.total+ '! http://cultureapp.dyndns.org/ %23chd11';

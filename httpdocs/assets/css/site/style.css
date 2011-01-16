@@ -474,3 +474,13 @@ header {
 #tweet a span {
 	display: inline-block;
 }
+
+/* @group Luvvie Alarm */
+
+#luvvie-alarm {
+	width: 940px;
+	font-size: 32pt;
+	text-align: center;
+}
+
+/* @end */
