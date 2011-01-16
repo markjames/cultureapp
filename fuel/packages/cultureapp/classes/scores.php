@@ -127,31 +127,31 @@ class Scores {
 	public function getAmusingName( $genres ) {
 		$names = array(
 			'opera' => 'Bellowing',
-			'classical' => 'Classic',
-			'film' => 'Hollywood',
-			'dance' => 'Dancing',
-			'rock-and-pop' => 'Rocking',
-			'theatre' => 'Prancing',
-			'exhibit' => 'Exhibiting',
-			'music' => 'Loud',
-			'comedy' => 'Hilarious',
+			'classical' => 'Ruff-Donning ',
+			'film' => 'A-List',
+			'dance' => 'Flashdancin\'',
+			'rock-and-pop' => 'Lady Gaga Lovin\'',
+			'theatre' => 'Board-Treading',
+			'exhibit' => 'Self-Exhibiting',
+			'music' => 'Warbling',
+			'comedy' => 'Slow-clapping',
 			'folk-and-world' => 'Folksy',
 			'jazz-and-blues' => 'Bebopping',
-			'special-event' => 'Special'
+			'special-event' => 'Specially-picked'
 		);
 		$names_nouns = array(
 			'opera' => 'Meistersinger',
-			'classical' => 'Maestro',
-			'film' => 'Director',
-			'dance' => 'Dancer',
-			'rock-and-pop' => 'Rockstar',
-			'theatre' => 'Actor',
-			'exhibit' => 'Curator',
-			'music' => 'Musician',
-			'comedy' => 'Comedian',
-			'folk-and-world' => 'Hippy',
-			'jazz-and-blues' => 'Trombonist',
-			'special-event' => 'Outcast'
+			'classical' => 'Baroque Wig Wearer',
+			'film' => 'Die Hard Extra',
+			'dance' => 'Leotard Lover',
+			'rock-and-pop' => 'Fifth Beatle',
+			'theatre' => 'Nativity Play Director',
+			'exhibit' => 'Badger Fossil',
+			'music' => 'One Man Band',
+			'comedy' => 'Game Show Host',
+			'folk-and-world' => 'Tree-Loving Hippy',
+			'jazz-and-blues' => 'Freeform Trombonist',
+			'special-event' => 'Wee Jimmy Krankie'
 		);
 		
 		$keys = array_keys($genres['genres']);
