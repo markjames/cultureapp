@@ -9,7 +9,7 @@ Links:
 */
 
 /* @override 
-http://cultureapp.site/assets/css/site/style.css
+	http://cultureapp.site/assets/css/site/style.css
 */
 
 .derp { color: #FF0043; }
@@ -48,10 +48,16 @@ http://cultureapp.site/assets/css/site/style.css
  }
 }
 
+@-webkit-keyframes timeline {
+ 0% {
+   background-color: ;
+ }
+ 100% {
+   background-color: #666;
+ }
+}
+
 /* @end */
-
-
-/* @override http://poirot.site/assets/style/theme.css */
 
 /* @group Units */
 .unit:after, .group:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
@@ -306,6 +312,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', end
       to   { -webkit-transform: rotateY(360deg); }
     }
 
+@-webkit-keyframes spin {
+      from { left }
+      to   { -webkit-transform: rotateY(360deg); }
+    }
+
 #page-content {
       -webkit-perspective: 900;
 }
@@ -425,4 +436,41 @@ background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFFFF
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', endColorstr='#E3E4E5',GradientType=0 );
 	text-shadow: #fff 0 1px 1px;
 	color: #616161;
+}
+header {
+	position: relative;
+}
+#tweet {
+	width: 400px;
+	position: absolute;
+	right: 0;
+	top: 6px;
+}
+#tweet strong {
+	display: inline-block;
+	color: #FFF;
+	font-family: "brevia-1","brevia-2",sans-serif;
+	font-weight: lighter;
+	font-size: 16px;
+	text-shadow: #237c85 0 -1px 0px;
+}
+#tweet a {
+	cursor: pointer;
+	width: 286px;
+	color: #000;
+	background-color: #fefffe;
+	display: block;
+	padding: 4px 8px;
+	font-size: 16px;
+	overflow: hidden;
+	white-space: pre;
+	text-overflow: ellipsis;
+	border: 2px solid #237c85;
+	-webkit-transition: border-color 0.2s ease-out;
+}
+#tweet a:hover {
+	border: 2px solid #ff6900;	
+}
+#tweet a span {
+	display: inline-block;
 }

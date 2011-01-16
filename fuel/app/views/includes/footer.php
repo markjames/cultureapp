@@ -23,6 +23,7 @@
 
 <script type="text/javascript">
 	$(function(){
+		//$('#tweet').hide();
 		function getPostcodeSearch() {
 			$('#primary-content').addClass('calculating');
 			
@@ -43,6 +44,20 @@
 						$('li.' + i).find('span').html(response[i]);
 					}
 				}
+				
+				// Drop in a tweet link
+				var twittermsg = 'My Culture Score is ' +response.total+ '! http://cultureapp.dyndns.org/ #chd11';
+				$('#tweetlink').attr('href','http://twitter.com/home?status='+twittermsg);
+				$('#tweetlink').text(twittermsg).parent().fadeIn();
+				
+				var mylist = $('#unit-scores ol');
+				var listitems = mylist.children('li').get();
+				listitems.sort(function(a, b) {
+					var compA = 1 * $(a).find('span:first').text().toUpperCase();
+					var compB = 1 * $(b).find('span:first').text().toUpperCase();
+					return (compB < compA) ? -1 : (compA > compB) ? 1 : 0;
+				})
+				$.each(listitems, function(idx, itm) { mylist.append(itm); });
 				
 				$('#score').html(response.total);
 				$('#primary-content').removeClass('calculating');
