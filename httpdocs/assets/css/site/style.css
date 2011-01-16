@@ -479,19 +479,25 @@ header {
 
 #luvvie-alarm {
 	width: 940px;
+	font-family: "brevia-1","brevia-2",sans-serif;
+	-webkit-font-smoothing: antialiased;
+	text-align: center;
 }
 
 #luvvie-alarm span {
 	width: 940px;
-	float: left;
-	text-align: left;
+	text-align: center;
 	font-size: 14pt;
+	color: #FFF;
 }
 
-#luvvie-alarm p {
+#luvvie-alarm div {
 	text-align: center;
-	margin: 0;
-	font-size: 32pt;
-}
+	margin: -12px 0 0 0;
+	padding: 0;
+	line-height: 1.1;
+	font-size: 12px;
+	font-weight: lighter;
+
 
 /* @end */

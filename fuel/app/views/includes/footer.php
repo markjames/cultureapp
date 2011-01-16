@@ -62,7 +62,7 @@
 					}
 				}
 				
-				$('#luvvie-alarm').children('p').html(response.luvvie_name).bigtext();
+				$('#luvvie-alarm #bigtext div:first').html(response.luvvie_name).parent().bigtext();
 				$('#luvvie-alarm').children('span').html('You are a...');
 				
 				// Drop in a tweet link
