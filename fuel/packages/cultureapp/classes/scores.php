@@ -353,8 +353,8 @@ class Scores {
 		$totals = array(
 			'dance' => 26,
 			'exhibit' => 77,
-			'opera' => 14,
-			'classical' => 111,
+			'opera' => 25,
+			'classical' => 150,
 			'music' => 555,
 			'folk-and-world' => 69,
 			'jazz-and-blues' => 71,
